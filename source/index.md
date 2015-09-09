@@ -59,26 +59,58 @@ Des squelettes de code pour les principaux languages permettant de faciliter l�
 
 #Authentification
 ##Provider
-Ces requêtes traitent de sujet concernant uniquement le fournisseur “logiciel de caisse” (ex: la création d’un commerce).
+> Calcul de la cle
+
+```
+FIDELISA_JETON est un jeton aléatoire (différent à chaque appel)
+
+FIDELISA_PROVIDER_KEY correspond au calcul de la signature avec comme paramètres :
+  request : concatenation de FIDELISA_PROVIDER et FIDELISA_JETON.
+  secret_key : FIDELISA_PROVIDER
+```
+
+Ces requêtes nécessitent les droits fournisseur (ex: Initialisation d'un shop).
 
 Dans le header de la requête ajouter les éléments suivants :
 
 Nom |  Description
 --------- | -----------
-HTTP_FIDELISA_PROVIDER |  code Fidelisa fourni par Fidelisa
-HTTP_FIDELISA_PROVIDER_KEY  | [signature de la requête](#signature)
-HTTP_FIDELISA_JETON  | code à usage unique généré par le provider
+FIDELISA_JETON  | code à usage unique généré par le provider
+FIDELISA_PROVIDER |  code Fidelisa fourni par Fidelisa
+FIDELISA_PROVIDER_KEY  | signature de la requête
+
+
+
 
 ##Shop
-Ce sont des requêtes qui traitent des sujets d’un commerce en particulier (ex: la création d’un client).
+> Calcul de la cle
+
+```
+FIDELISA_JETON est un jeton aléatoire (différent à chaque appel)
+
+FIDELISA_PROVIDER_KEY correspond au calcul de la signature avec comme paramètres :
+  request : concatenation de FIDELISA_PROVIDER et FIDELISA_JETON.
+  secret_key : FIDELISA_PROVIDER
+
+FIDELISA_APIUSER_KEY correspond au calcul de la [signature](#Signature) avec comme paramètres :
+  request : concatenation de FIDELISA_APIUSER et FIDELISA_JETON.
+  secret_key : FIDELISA_APIUSER
+```
+
+Ces requêtes nécessitent les droits shop (ex: la création d’un client).
 
 Dans le header de la requête ajouter les éléments suivants :
 La partie Header du “fournisseur” (voir plus haut)
 
 Nom |  Description
 --------- | -----------
-HTTP_FIDELISA_APIUSER | code du commerce retourné lors de l’appel du init/shop (champ uuid du json)
-HTTP_FIDELISA_APIUSER_KEY | [signature de la requête](#signature)
+FIDELISA_JETON  | code à usage unique généré par le provider
+FIDELISA_PROVIDER |  code Fidelisa fourni par Fidelisa
+FIDELISA_PROVIDER_KEY  | signature de la requête
+FIDELISA_APIUSER | code du commerce retourné lors de l’appel du init/shop (champ uuid du json)
+FIDELISA_APIUSER_KEY | [signature de la requête](#signature)
+
+
 
 # Exemples de code
 ## Signature
@@ -130,31 +162,31 @@ retour | Chaine cryptée
 ## Headers
 
 ```ruby
-def make_hearders_request(request, withuser = false)
+def make_hearders_request(request, withshop = false)
   jeton = rand(99999999).to_s
   request["FIDELISA_JETON"] = jeton
   request["FIDELISA_PROVIDER"] = @provider
   request["FIDELISA_PROVIDER_KEY"] = sign_request(@provider + jeton, @provider_key )
 
-  if (withuser)
-    request["FIDELISA_APIUSER"] = @user
-    request["FIDELISA_APIUSER_KEY"] = sign_request(@user + jeton, @user_key )
+  if (withshop)
+    request["FIDELISA_APIUSER"] = @shop
+    request["FIDELISA_APIUSER_KEY"] = sign_request(@shop + jeton, @shop_key )
   end
 end
 ```
 
 ```csharp
-public void MakeHeadersRequest(HttpWebRequest request, bool withUser = false)
+public void MakeHeadersRequest(HttpWebRequest request, bool withshop = false)
 {
     Random rnd = new Random();
     int jeton = rnd.Next(99999999);
     request.Headers.Add("FIDELISA_JETON", jeton.ToString());
     request.Headers.Add("FIDELISA_PROVIDER", provider);
     request.Headers.Add("FIDELISA_PROVIDER_KEY", SignRequest(provider + jeton, providerKey));
-    if (withUser)
+    if (withshop)
     {
-        request.Headers.Add("FIDELISA_APIUSER", user);
-        request.Headers.Add("FIDELISA_APIUSER_KEY", SignRequest(user + jeton, userKey));
+        request.Headers.Add("FIDELISA_APIUSER", shop);
+        request.Headers.Add("FIDELISA_APIUSER_KEY", SignRequest(shop + jeton, shopKey));
     }
 }
 ```
@@ -165,7 +197,7 @@ Fabrique des entêtes Fidelisa d'une requête
 Nom | Description
 ------- | ---------
 request | Requête à signer
-withUser | Requête de type commerce ? true/false
+withshop | Requête de type shop ? true/false
 
 
 ## Get
@@ -198,7 +230,7 @@ public Programs GetPrograms()
 }
 ```
 
-Exemple d'appel d'une fonction Get (liste des programmes)
+Exemple d'appel d'une fonction Get (Liste des programmes)
 
 ###Function parameters
 Nom | Description
@@ -211,7 +243,7 @@ retour | Tableaux de programmes
 
 ## Post
 
-```
+```ruby
 def init_shop
   http = Net::HTTP.new(@uri.host, @uri.port)
   http.use_ssl = true
@@ -269,7 +301,6 @@ retour | Le shop initialisé
 ## Date et Montant
 Les dates sont au format YYYY-MM-DD
 Pour les montants, le séparateur de décimal est le “.” (point), il n’y a pas de séparateur de milliers.
-
 
 #Shops
 ## Initialisation
@@ -367,7 +398,7 @@ Code | Description
 }
 ```
 
-Permet de récupérer la liste des shops attachés au provider
+Permet de récupérer la liste des boutiques attachés au fournisseur
 
 ### Authentification
 
@@ -549,13 +580,13 @@ Type : [Shop] (#shop)
 
 ### HTTP Request
 
-`GET /api/customers/{uuid_customer}`
+`GET /api/customers/{customer_id}`
 
 ### Query Parameters
 
 Parameter | Type | Description
 --------- | --------- | -----------
-uuid_customer | path | UUID du customer
+customer_id | path | UUID du customer
 
 ### Return code
 Code | Description
@@ -573,13 +604,13 @@ Type : [Shop] (#shop)
 
 ### HTTP Request
 
-`DELETE /api/customers/{uuid_customer}`
+`DELETE /api/customers/{customer_id}`
 
 ### Query Parameters
 
 Parameter | Type | Description
 --------- | --------- | -----------
-uuid_customer | path | UUID du customer
+customer_id | path | UUID du customer
 
 ### Return code
 Code | Description
@@ -650,13 +681,13 @@ Type : [Shop] (#shop)
 
 ### HTTP Request
 
-`GET /api/customers/{uuid_customer}/cards`
+`GET /api/customers/{customer_id}/cards`
 
 ### Query Parameters
 
 Parameter | Type | Description
 --------- | --------- | -----------
-uuid_customer | path | UUID du customer
+customer_id | path | UUID du customer
 
 ### Return code
 Code | Description
@@ -683,13 +714,13 @@ Type : [Shop] (#shop)
 
 ### HTTP Request
 
-`POST /api/customers/{uuid_customer}/cards/expired_at`
+`POST /api/customers/{customer_id}/cards/expired_at`
 
 ### Query Parameters
 
 Parameter | Type | Description
 --------- | --------- | -----------
-uuid_customer | path | UUID du customer
+customer_id | path | UUID du customer
 id | body | UUID de la card (facultatif)
 date | body | Date d'expiration de la card
 reset | body | Remise à zero des points
@@ -700,7 +731,7 @@ Code | Description
 200 | OK
 
 <aside class="notice">
-Si aucune card n'est passé en paramètre, c'est la carte par défaut du customer qui est expirée
+Si aucune carte n'est passée en paramètre, c'est la carte par défaut du client qui est expirée
 </aside>
 
 #Rule Basis
@@ -739,7 +770,7 @@ Type : [Shop] (#shop)
 
 Parameter | Type | Description
 --------- | --------- | -----------
-uuid_customer | query | UUID d'un customer
+customer_id | query | UUID d'un customer
 
 ### Return code
 Code | Description
@@ -750,7 +781,7 @@ Code | Description
 Liste des types : Passage, TotalAmount, SubTotal1, SubTotal2, SubTotal3, SubTotal4, SubTotal5, SubTotal6, SubTotal7, SubTotal8, SubTotal9, Item
 </aside>
 
-#Ventes
+#Sales
 ## Creation
 ```json  
 {
@@ -758,7 +789,7 @@ Liste des types : Passage, TotalAmount, SubTotal1, SubTotal2, SubTotal3, SubTota
   {
     "total" : "123.50",
     "date" : "2013-01-15",
-    "uuid_customer" : "FD39A1AA85AC4F3FB977DEA5A5786263",
+    "customer_id" : "FD39A1AA85AC4F3FB977DEA5A5786263",
     "details" : [
       {
         "type" : "SubTotal1",
@@ -813,7 +844,7 @@ Parameter | Type | Description
 --------- | --------- | -----------
 total | body | Montant total l'opération
 date | body | Date de l'opération
-uuid_customer | body | UUID du customer
+customer_id | body | UUID du customer
 details | body | Tableau de details
 
 ### Return code
@@ -827,7 +858,7 @@ S'il existe des erreurs, elles sont retournées dans un tableau.
 </aside>
 
 #Points
-## Creation
+##Creation
 Permet d'ajouter des points à une card
 
 >Avec un identifiant de carte connu
@@ -877,9 +908,7 @@ Code | Description
 
 
 
-
-
-#Cadeaux
+#Gifts
 ## Client
 
 >  Resultat JSON
@@ -910,7 +939,7 @@ Type : [Shop] (#shop)
 
 Parameter | Type | Description
 --------- | --------- | -----------
-uuid_customer | query | UUID du customer
+customer_id | query | UUID du customer
 used | query | Filtrer les cadeaux déjà offerts (facultatif)
 
 ### Return code
@@ -929,7 +958,7 @@ La propriété "points", du retour correspond au nombre de points collectés sur
 ```json  
 {
   "uuid" : "AZEFDFD39A1AA85AC423JJL34NEZOJ3E",
-  "uuid_customer" : "FD39A1AA85AC4F3FB977DEA5A5786263"
+  "customer_id" : "FD39A1AA85AC4F3FB977DEA5A5786263"
 }
 ```
 
@@ -948,7 +977,7 @@ Type : [Shop] (#shop)
 Parameter | Type | Description
 --------- | --------- | -----------
 uuid | body | UUID du cadeaux
-uuid_customer | body | UUID du customer
+customer_id | body | UUID du customer
 
 
 ### Return code
@@ -967,14 +996,14 @@ Type : [Shop] (#shop)
 
 ### HTTP Request
 
-`DELETE /api/gifts/{uuid_gift}`
+`DELETE /api/gifts/{gift_id}`
 
 ### Query Parameters
 
 Parameter | Type | Description
 --------- | --------- | -----------
-uuid_gift | path | UUID du cadeaux
-uuid_customer | query | UUID du customer
+gift_id | path | UUID du cadeaux
+customer_id | query | UUID du customer
 
 
 ### Return code
@@ -1031,8 +1060,6 @@ Type : [Shop] (#shop)
 
 Parameter | Type | Description
 --------- | --------- | -----------
-uuid_gift | path | UUID du cadeaux
-uuid_customer | query | UUID du customer
 
 
 ### Return code
