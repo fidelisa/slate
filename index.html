@@ -107,7 +107,17 @@ Cette “messagerie” peut être directement utilisée depuis le TPV via l’AP
 
 <h2 id="provider">Provider</h2>
 
-<p>Ces requêtes traitent de sujet concernant uniquement le fournisseur “logiciel de caisse” (ex: la création d’un commerce).</p>
+<blockquote>
+<p>Calcul de la cle</p>
+</blockquote>
+<pre class="highlight plaintext"><code>FIDELISA_JETON est un jeton aléatoire (différent à chaque appel)
+
+FIDELISA_PROVIDER_KEY correspond au calcul de la signature avec comme paramètres :
+  request : concatenation de FIDELISA_PROVIDER et FIDELISA_JETON.
+  secret_key : FIDELISA_PROVIDER
+</code></pre>
+
+<p>Ces requêtes nécessitent les droits fournisseur (ex: Initialisation d&#39;un shop).</p>
 
 <p>Dans le header de la requête ajouter les éléments suivants :</p>
 
@@ -118,22 +128,36 @@ Cette “messagerie” peut être directement utilisée depuis le TPV via l’AP
 </tr>
 </thead><tbody>
 <tr>
-<td>HTTP_FIDELISA_PROVIDER</td>
+<td>FIDELISA_JETON</td>
+<td>code à usage unique généré par le provider</td>
+</tr>
+<tr>
+<td>FIDELISA_PROVIDER</td>
 <td>code Fidelisa fourni par Fidelisa</td>
 </tr>
 <tr>
-<td>HTTP_FIDELISA_PROVIDER_KEY</td>
-<td><a href="#signature">signature de la requête</a></td>
-</tr>
-<tr>
-<td>HTTP_FIDELISA_JETON</td>
-<td>code à usage unique généré par le provider</td>
+<td>FIDELISA_PROVIDER_KEY</td>
+<td>signature de la requête</td>
 </tr>
 </tbody></table>
 
 <h2 id="shop">Shop</h2>
 
-<p>Ce sont des requêtes qui traitent des sujets d’un commerce en particulier (ex: la création d’un client).</p>
+<blockquote>
+<p>Calcul de la cle</p>
+</blockquote>
+<pre class="highlight plaintext"><code>FIDELISA_JETON est un jeton aléatoire (différent à chaque appel)
+
+FIDELISA_PROVIDER_KEY correspond au calcul de la signature avec comme paramètres :
+  request : concatenation de FIDELISA_PROVIDER et FIDELISA_JETON.
+  secret_key : FIDELISA_PROVIDER
+
+FIDELISA_APIUSER_KEY correspond au calcul de la [signature](#Signature) avec comme paramètres :
+  request : concatenation de FIDELISA_APIUSER et FIDELISA_JETON.
+  secret_key : FIDELISA_APIUSER
+</code></pre>
+
+<p>Ces requêtes nécessitent les droits shop (ex: la création d’un client).</p>
 
 <p>Dans le header de la requête ajouter les éléments suivants :
 La partie Header du “fournisseur” (voir plus haut)</p>
@@ -145,11 +169,23 @@ La partie Header du “fournisseur” (voir plus haut)</p>
 </tr>
 </thead><tbody>
 <tr>
-<td>HTTP_FIDELISA_APIUSER</td>
+<td>FIDELISA_JETON</td>
+<td>code à usage unique généré par le provider</td>
+</tr>
+<tr>
+<td>FIDELISA_PROVIDER</td>
+<td>code Fidelisa fourni par Fidelisa</td>
+</tr>
+<tr>
+<td>FIDELISA_PROVIDER_KEY</td>
+<td>signature de la requête</td>
+</tr>
+<tr>
+<td>FIDELISA_APIUSER</td>
 <td>code du commerce retourné lors de l’appel du init/shop (champ uuid du json)</td>
 </tr>
 <tr>
-<td>HTTP_FIDELISA_APIUSER_KEY</td>
+<td>FIDELISA_APIUSER_KEY</td>
 <td><a href="#signature">signature de la requête</a></td>
 </tr>
 </tbody></table>
@@ -221,29 +257,29 @@ La partie Header du “fournisseur” (voir plus haut)</p>
 </tbody></table>
 
 <h2 id="headers">Headers</h2>
-<pre class="highlight ruby"><code><span class="k">def</span> <span class="nf">make_hearders_request</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">withuser</span> <span class="o">=</span> <span class="kp">false</span><span class="p">)</span>
+<pre class="highlight ruby"><code><span class="k">def</span> <span class="nf">make_hearders_request</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">withshop</span> <span class="o">=</span> <span class="kp">false</span><span class="p">)</span>
   <span class="n">jeton</span> <span class="o">=</span> <span class="nb">rand</span><span class="p">(</span><span class="mi">99999999</span><span class="p">).</span><span class="nf">to_s</span>
   <span class="n">request</span><span class="p">[</span><span class="s2">"FIDELISA_JETON"</span><span class="p">]</span> <span class="o">=</span> <span class="n">jeton</span>
   <span class="n">request</span><span class="p">[</span><span class="s2">"FIDELISA_PROVIDER"</span><span class="p">]</span> <span class="o">=</span> <span class="vi">@provider</span>
   <span class="n">request</span><span class="p">[</span><span class="s2">"FIDELISA_PROVIDER_KEY"</span><span class="p">]</span> <span class="o">=</span> <span class="n">sign_request</span><span class="p">(</span><span class="vi">@provider</span> <span class="o">+</span> <span class="n">jeton</span><span class="p">,</span> <span class="vi">@provider_key</span> <span class="p">)</span>
 
-  <span class="k">if</span> <span class="p">(</span><span class="n">withuser</span><span class="p">)</span>
-    <span class="n">request</span><span class="p">[</span><span class="s2">"FIDELISA_APIUSER"</span><span class="p">]</span> <span class="o">=</span> <span class="vi">@user</span>
-    <span class="n">request</span><span class="p">[</span><span class="s2">"FIDELISA_APIUSER_KEY"</span><span class="p">]</span> <span class="o">=</span> <span class="n">sign_request</span><span class="p">(</span><span class="vi">@user</span> <span class="o">+</span> <span class="n">jeton</span><span class="p">,</span> <span class="vi">@user_key</span> <span class="p">)</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">withshop</span><span class="p">)</span>
+    <span class="n">request</span><span class="p">[</span><span class="s2">"FIDELISA_APIUSER"</span><span class="p">]</span> <span class="o">=</span> <span class="vi">@shop</span>
+    <span class="n">request</span><span class="p">[</span><span class="s2">"FIDELISA_APIUSER_KEY"</span><span class="p">]</span> <span class="o">=</span> <span class="n">sign_request</span><span class="p">(</span><span class="vi">@shop</span> <span class="o">+</span> <span class="n">jeton</span><span class="p">,</span> <span class="vi">@shop_key</span> <span class="p">)</span>
   <span class="k">end</span>
 <span class="k">end</span>
 </code></pre>
-<pre class="highlight csharp"><code><span class="k">public</span> <span class="k">void</span> <span class="nf">MakeHeadersRequest</span><span class="p">(</span><span class="n">HttpWebRequest</span> <span class="n">request</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">withUser</span> <span class="p">=</span> <span class="k">false</span><span class="p">)</span>
+<pre class="highlight csharp"><code><span class="k">public</span> <span class="k">void</span> <span class="nf">MakeHeadersRequest</span><span class="p">(</span><span class="n">HttpWebRequest</span> <span class="n">request</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">withshop</span> <span class="p">=</span> <span class="k">false</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="n">Random</span> <span class="n">rnd</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Random</span><span class="p">();</span>
     <span class="kt">int</span> <span class="n">jeton</span> <span class="p">=</span> <span class="n">rnd</span><span class="p">.</span><span class="nf">Next</span><span class="p">(</span><span class="m">99999999</span><span class="p">);</span>
     <span class="n">request</span><span class="p">.</span><span class="n">Headers</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="s">"FIDELISA_JETON"</span><span class="p">,</span> <span class="n">jeton</span><span class="p">.</span><span class="nf">ToString</span><span class="p">());</span>
     <span class="n">request</span><span class="p">.</span><span class="n">Headers</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="s">"FIDELISA_PROVIDER"</span><span class="p">,</span> <span class="n">provider</span><span class="p">);</span>
     <span class="n">request</span><span class="p">.</span><span class="n">Headers</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="s">"FIDELISA_PROVIDER_KEY"</span><span class="p">,</span> <span class="nf">SignRequest</span><span class="p">(</span><span class="n">provider</span> <span class="p">+</span> <span class="n">jeton</span><span class="p">,</span> <span class="n">providerKey</span><span class="p">));</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">withUser</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">withshop</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="n">request</span><span class="p">.</span><span class="n">Headers</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="s">"FIDELISA_APIUSER"</span><span class="p">,</span> <span class="n">user</span><span class="p">);</span>
-        <span class="n">request</span><span class="p">.</span><span class="n">Headers</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="s">"FIDELISA_APIUSER_KEY"</span><span class="p">,</span> <span class="nf">SignRequest</span><span class="p">(</span><span class="n">user</span> <span class="p">+</span> <span class="n">jeton</span><span class="p">,</span> <span class="n">userKey</span><span class="p">));</span>
+        <span class="n">request</span><span class="p">.</span><span class="n">Headers</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="s">"FIDELISA_APIUSER"</span><span class="p">,</span> <span class="n">shop</span><span class="p">);</span>
+        <span class="n">request</span><span class="p">.</span><span class="n">Headers</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="s">"FIDELISA_APIUSER_KEY"</span><span class="p">,</span> <span class="nf">SignRequest</span><span class="p">(</span><span class="n">shop</span> <span class="p">+</span> <span class="n">jeton</span><span class="p">,</span> <span class="n">shopKey</span><span class="p">));</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre>
@@ -263,8 +299,8 @@ La partie Header du “fournisseur” (voir plus haut)</p>
 <td>Requête à signer</td>
 </tr>
 <tr>
-<td>withUser</td>
-<td>Requête de type commerce ? true/false</td>
+<td>withshop</td>
+<td>Requête de type shop ? true/false</td>
 </tr>
 </tbody></table>
 
@@ -295,7 +331,7 @@ La partie Header du “fournisseur” (voir plus haut)</p>
 <span class="p">}</span>
 </code></pre>
 
-<p>Exemple d&#39;appel d&#39;une fonction Get (liste des programmes)</p>
+<p>Exemple d&#39;appel d&#39;une fonction Get (Liste des programmes)</p>
 
 <h3 id="function-parameters">Function parameters</h3>
 
@@ -322,17 +358,17 @@ La partie Header du “fournisseur” (voir plus haut)</p>
 </tbody></table>
 
 <h2 id="post">Post</h2>
-<pre class="highlight plaintext"><code>def init_shop
-  http = Net::HTTP.new(@uri.host, @uri.port)
-  http.use_ssl = true
+<pre class="highlight ruby"><code><span class="k">def</span> <span class="nf">init_shop</span>
+  <span class="n">http</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="vi">@uri</span><span class="p">.</span><span class="nf">host</span><span class="p">,</span> <span class="vi">@uri</span><span class="p">.</span><span class="nf">port</span><span class="p">)</span>
+  <span class="n">http</span><span class="p">.</span><span class="nf">use_ssl</span> <span class="o">=</span> <span class="kp">true</span>
 
-  request = Net::HTTP::Post.new("/api/shops/init")
-  request['Content-Type'] = 'application/json'
-  make_hearders_request(request, false)
-  request.body = ({ :shop =&gt; { "user_email" =&gt; @shop_mail } }).to_json
-  response = http.request(request)
-  body = JSON.parse(response.body)
-end
+  <span class="n">request</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="o">::</span><span class="no">Post</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s2">"/api/shops/init"</span><span class="p">)</span>
+  <span class="n">request</span><span class="p">[</span><span class="s1">'Content-Type'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'application/json'</span>
+  <span class="n">make_hearders_request</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="kp">false</span><span class="p">)</span>
+  <span class="n">request</span><span class="p">.</span><span class="nf">body</span> <span class="o">=</span> <span class="p">({</span> <span class="ss">:shop</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="s2">"user_email"</span> <span class="o">=&gt;</span> <span class="vi">@shop_mail</span> <span class="p">}</span> <span class="p">}).</span><span class="nf">to_json</span>
+  <span class="n">response</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="nf">request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+  <span class="n">body</span> <span class="o">=</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="nf">body</span><span class="p">)</span>
+<span class="k">end</span>
 </code></pre>
 <pre class="highlight csharp"><code><span class="k">public</span> <span class="n">Shop</span> <span class="nf">InitShop</span><span class="p">()</span>
 <span class="p">{</span>
@@ -515,7 +551,7 @@ Pour les montants, le séparateur de décimal est le “.” (point), il n’y a
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Permet de récupérer la liste des shops attachés au provider</p>
+<p>Permet de récupérer la liste des boutiques attachés au fournisseur</p>
 
 <h3 id="authentification">Authentification</h3>
 
@@ -775,7 +811,7 @@ Pour les montants, le séparateur de décimal est le “.” (point), il n’y a
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET /api/customers/{uuid_customer}</code></p>
+<p><code class="prettyprint">GET /api/customers/{customer_id}</code></p>
 
 <h3 id="query-parameters">Query Parameters</h3>
 
@@ -787,7 +823,7 @@ Pour les montants, le séparateur de décimal est le “.” (point), il n’y a
 </tr>
 </thead><tbody>
 <tr>
-<td>uuid_customer</td>
+<td>customer_id</td>
 <td>path</td>
 <td>UUID du customer</td>
 </tr>
@@ -817,7 +853,7 @@ Pour les montants, le séparateur de décimal est le “.” (point), il n’y a
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">DELETE /api/customers/{uuid_customer}</code></p>
+<p><code class="prettyprint">DELETE /api/customers/{customer_id}</code></p>
 
 <h3 id="query-parameters">Query Parameters</h3>
 
@@ -829,7 +865,7 @@ Pour les montants, le séparateur de décimal est le “.” (point), il n’y a
 </tr>
 </thead><tbody>
 <tr>
-<td>uuid_customer</td>
+<td>customer_id</td>
 <td>path</td>
 <td>UUID du customer</td>
 </tr>
@@ -927,7 +963,7 @@ Pour les montants, le séparateur de décimal est le “.” (point), il n’y a
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET /api/customers/{uuid_customer}/cards</code></p>
+<p><code class="prettyprint">GET /api/customers/{customer_id}/cards</code></p>
 
 <h3 id="query-parameters">Query Parameters</h3>
 
@@ -939,7 +975,7 @@ Pour les montants, le séparateur de décimal est le “.” (point), il n’y a
 </tr>
 </thead><tbody>
 <tr>
-<td>uuid_customer</td>
+<td>customer_id</td>
 <td>path</td>
 <td>UUID du customer</td>
 </tr>
@@ -975,7 +1011,7 @@ Pour les montants, le séparateur de décimal est le “.” (point), il n’y a
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">POST /api/customers/{uuid_customer}/cards/expired_at</code></p>
+<p><code class="prettyprint">POST /api/customers/{customer_id}/cards/expired_at</code></p>
 
 <h3 id="query-parameters">Query Parameters</h3>
 
@@ -987,7 +1023,7 @@ Pour les montants, le séparateur de décimal est le “.” (point), il n’y a
 </tr>
 </thead><tbody>
 <tr>
-<td>uuid_customer</td>
+<td>customer_id</td>
 <td>path</td>
 <td>UUID du customer</td>
 </tr>
@@ -1023,7 +1059,7 @@ Pour les montants, le séparateur de décimal est le “.” (point), il n’y a
 </tbody></table>
 
 <aside class="notice">
-Si aucune card n'est passé en paramètre, c'est la carte par défaut du customer qui est expirée
+Si aucune carte n'est passée en paramètre, c'est la carte par défaut du client qui est expirée
 </aside>
 
 <h1 id="rule-basis">Rule Basis</h1>
@@ -1069,7 +1105,7 @@ Si aucune card n'est passé en paramètre, c'est la carte par défaut du custome
 </tr>
 </thead><tbody>
 <tr>
-<td>uuid_customer</td>
+<td>customer_id</td>
 <td>query</td>
 <td>UUID d&#39;un customer</td>
 </tr>
@@ -1093,7 +1129,7 @@ Si aucune card n'est passé en paramètre, c'est la carte par défaut du custome
 Liste des types : Passage, TotalAmount, SubTotal1, SubTotal2, SubTotal3, SubTotal4, SubTotal5, SubTotal6, SubTotal7, SubTotal8, SubTotal9, Item
 </aside>
 
-<h1 id="ventes">Ventes</h1>
+<h1 id="sales">Sales</h1>
 
 <h2 id="creation">Creation</h2>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -1101,7 +1137,7 @@ Liste des types : Passage, TotalAmount, SubTotal1, SubTotal2, SubTotal3, SubTota
   </span><span class="p">{</span><span class="w">
     </span><span class="nt">"total"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"123.50"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"date"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-01-15"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"uuid_customer"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"FD39A1AA85AC4F3FB977DEA5A5786263"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"customer_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"FD39A1AA85AC4F3FB977DEA5A5786263"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"details"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="nt">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"SubTotal1"</span><span class="p">,</span><span class="w">
@@ -1170,7 +1206,7 @@ Liste des types : Passage, TotalAmount, SubTotal1, SubTotal2, SubTotal3, SubTota
 <td> Date de l&#39;opération</td>
 </tr>
 <tr>
-<td>uuid_customer</td>
+<td>customer_id</td>
 <td>body</td>
 <td>UUID du customer</td>
 </tr>
@@ -1284,7 +1320,7 @@ S'il existe des erreurs, elles sont retournées dans un tableau.
 </tr>
 </tbody></table>
 
-<h1 id="cadeaux">Cadeaux</h1>
+<h1 id="gifts">Gifts</h1>
 
 <h2 id="client">Client</h2>
 
@@ -1322,7 +1358,7 @@ S'il existe des erreurs, elles sont retournées dans un tableau.
 </tr>
 </thead><tbody>
 <tr>
-<td>uuid_customer</td>
+<td>customer_id</td>
 <td> query</td>
 <td> UUID du customer</td>
 </tr>
@@ -1358,7 +1394,7 @@ La propriété &ldquo;points&rdquo;, du retour correspond au nombre de points co
 <h2 id="consommation">Consommation</h2>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"uuid"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"AZEFDFD39A1AA85AC423JJL34NEZOJ3E"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"uuid_customer"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"FD39A1AA85AC4F3FB977DEA5A5786263"</span><span class="w">
+  </span><span class="nt">"customer_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"FD39A1AA85AC4F3FB977DEA5A5786263"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -1387,7 +1423,7 @@ La propriété &ldquo;points&rdquo;, du retour correspond au nombre de points co
 <td> UUID du cadeaux</td>
 </tr>
 <tr>
-<td>uuid_customer</td>
+<td>customer_id</td>
 <td> body</td>
 <td> UUID du customer</td>
 </tr>
@@ -1421,7 +1457,7 @@ La propriété &ldquo;points&rdquo;, du retour correspond au nombre de points co
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">DELETE /api/gifts/{uuid_gift}</code></p>
+<p><code class="prettyprint">DELETE /api/gifts/{gift_id}</code></p>
 
 <h3 id="query-parameters">Query Parameters</h3>
 
@@ -1433,12 +1469,12 @@ La propriété &ldquo;points&rdquo;, du retour correspond au nombre de points co
 </tr>
 </thead><tbody>
 <tr>
-<td>uuid_gift</td>
+<td>gift_id</td>
 <td> path</td>
 <td> UUID du cadeaux</td>
 </tr>
 <tr>
-<td>uuid_customer</td>
+<td>customer_id</td>
 <td> query</td>
 <td> UUID du customer</td>
 </tr>
@@ -1515,16 +1551,6 @@ La propriété &ldquo;points&rdquo;, du retour correspond au nombre de points co
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>uuid_gift</td>
-<td> path</td>
-<td> UUID du cadeaux</td>
-</tr>
-<tr>
-<td>uuid_customer</td>
-<td> query</td>
-<td> UUID du customer</td>
-</tr>
 </tbody></table>
 
 <h3 id="return-code">Return code</h3>
