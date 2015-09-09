@@ -4,16 +4,16 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Reference</title>
+    <title>Fidelisa API Reference</title>
 
     <link href="stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
     <link href="stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
       <script src="javascripts/all.js" type="text/javascript"></script>
 
       <script>
         $(function() {
-          setupLanguages(["shell","ruby","python"]);
+          setupLanguages(["ruby","csharp"]);
         });
       </script>
   </head>
@@ -28,9 +28,8 @@
     <div class="tocify-wrapper">
       <img src="images/logo.png" />
         <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
               <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
+              <a href="#" data-language-name="csharp">csharp</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -46,210 +45,1535 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+        <h1 id="introduction">Introduction</h1>
 
-<p>We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<p>L’interfaçage entre le logiciel de caisse et Fidelisa repose sur l’API Fidelisa (API REST).
+Pour faire fonctionner les API, l’éditeur de logiciel de caisse doit être référencé par Fidelisa. Dans Fidelisa, le nom du logiciel de caisse figure dans le compte commerçant et permet l’authentification Editeur nécessaire à la connexion aux API.</p>
 
-<p>This example API documentation page was created with <a href="http://github.com/tripit/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&rsquo;s documentation.</p>
-<h1 id='authentication'>Authentication</h1>
-<blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'kittn'</span>
+<p>Fonctionnellement, plusieurs scénarios sont possibles. L’éditeur du logiciel de caisse détermine ce scénario en fonction du niveau d’intégration qu’il souhaite.</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre>
-<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">kittn</span>
+<p>Le commerçant crée ses cartes de fidélité dans Fidelisa et indique sur quelles bases s’effectue le calcul des points fidélité.</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre>
-<pre><code class="highlight shell"><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
+<p>Ces bases peuvent être de 5 types :</p>
 
-<blockquote>
-<p>Make sure to replace <code class="prettyprint">meowmeowmeow</code> with your API key.</p>
-</blockquote>
+<ul>
+<li>Total des achats</li>
+<li>Nombre de visites</li>
+<li>Catégories</li>
+<li>Marques de produits</li>
+<li>Certaines lignes de ticket</li>
+</ul>
 
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
+<p>Le TPV transmet les informations utiles au calcul de fidélité et Fidelisa met automatiquement à jour les cartes de fidélité en temps réel, jusqu’au smartphone du client.</p>
 
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
+<p><strong>Gestion des catégories TPV</strong>
+Le TPV dispose de 9 catégories personnalisables proposées sous la forme d’agrégats utilisables par Fidelisa (catégories). Le paramétrage de ces catégories est effectué par nos soins lors du référencement du TPV.</p>
 
-<p><code class="prettyprint">Authorization: meowmeowmeow</code></p>
+<p><strong>Communication avec les clients</strong>
+Fidelisa apporte également un canal de communication aux commerçants via notification (pour les clients équipés de smartphone), mail ou SMS.
+Cette “messagerie” peut être directement utilisée depuis le TPV via l’API correspondante : “Notification-création”.</p>
 
-<p><aside class="notice">
-You must replace <code class="prettyprint">meowmeowmeow</code> with your personal API key.
-</aside></p>
-<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'kittn'</span>
+<h1 id="lexique">Lexique</h1>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre>
-<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre>
-<pre><code class="highlight shell">curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
-
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre><code class="highlight json"><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Isis"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
-
-<p>This endpoint retrieves all kittens.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code class="prettyprint">GET http://example.com/kittens</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Default</th>
+<th>Nom</th>
+<th>Définition</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Provider</td>
+<td>Editeur de logiciel, agence, fournisseur, &hellip;</td>
+</tr>
+<tr>
+<td>Shop</td>
+<td>Point de vente, ecommerce, &hellip;</td>
+</tr>
+<tr>
+<td>Customer</td>
+<td>Client d&#39;un shop</td>
+</tr>
+</tbody></table>
+
+<h1 id="support">Support</h1>
+
+<p>Un support (mail ou téléphone) pour toute question technique ou fonctionnelle relative à l’implémentation de Fidelisa.</p>
+
+<p>Les icônes (plusieurs formats disponibles) pour afficher dans le TPV par exemple l’état du client (inscrit sur Fidelisa ou non).</p>
+
+<p>Des squelettes de code pour les principaux languages permettant de faciliter l’implémentation de l’API.</p>
+
+<h1 id="authentification">Authentification</h1>
+
+<h2 id="provider">Provider</h2>
+
+<p>Ces requêtes traitent de sujet concernant uniquement le fournisseur “logiciel de caisse” (ex: la création d’un commerce).</p>
+
+<p>Dans le header de la requête ajouter les éléments suivants :</p>
+
+<table><thead>
+<tr>
+<th>Nom</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
+<td>HTTP_FIDELISA_PROVIDER</td>
+<td>code Fidelisa fourni par Fidelisa</td>
 </tr>
 <tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
+<td>HTTP_FIDELISA_PROVIDER_KEY</td>
+<td><a href="#signature">signature de la requête</a></td>
+</tr>
+<tr>
+<td>HTTP_FIDELISA_JETON</td>
+<td>code à usage unique généré par le provider</td>
 </tr>
 </tbody></table>
 
-<p><aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside></p>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'kittn'</span>
+<h2 id="shop">Shop</h2>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre>
-<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">kittn</span>
+<p>Ce sont des requêtes qui traitent des sujets d’un commerce en particulier (ex: la création d’un client).</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<p>Dans le header de la requête ajouter les éléments suivants :
+La partie Header du “fournisseur” (voir plus haut)</p>
+
+<table><thead>
+<tr>
+<th>Nom</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>HTTP_FIDELISA_APIUSER</td>
+<td>code du commerce retourné lors de l’appel du init/shop (champ uuid du json)</td>
+</tr>
+<tr>
+<td>HTTP_FIDELISA_APIUSER_KEY</td>
+<td><a href="#signature">signature de la requête</a></td>
+</tr>
+</tbody></table>
+
+<h1 id="exemples-de-code">Exemples de code</h1>
+
+<h2 id="signature">Signature</h2>
+<pre class="highlight ruby"><code><span class="k">def</span> <span class="nf">sign_request</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">secret_key</span><span class="p">)</span>
+  <span class="c1">#encode base 64</span>
+  <span class="n">policy</span> <span class="o">=</span> <span class="no">Base64</span><span class="p">.</span><span class="nf">strict_encode64</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+
+  <span class="c1"># Sign policy with secret key</span>
+  <span class="n">digest</span> <span class="o">=</span> <span class="no">OpenSSL</span><span class="o">::</span><span class="no">Digest</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s1">'sha1'</span><span class="p">)</span>
+  <span class="n">hmac</span><span class="o">=</span><span class="no">OpenSSL</span><span class="o">::</span><span class="no">HMAC</span><span class="p">.</span><span class="nf">hexdigest</span><span class="p">(</span><span class="n">digest</span><span class="p">,</span> <span class="n">secret_key</span><span class="p">,</span> <span class="n">policy</span><span class="p">)</span>
+
+  <span class="c1"># encode base 64</span>
+  <span class="n">signature</span> <span class="o">=</span> <span class="no">Base64</span><span class="p">.</span><span class="nf">strict_encode64</span><span class="p">(</span><span class="n">hmac</span><span class="p">)</span>
+  <span class="n">signature</span>
+<span class="k">end</span>
 </code></pre>
-<pre><code class="highlight shell">curl <span class="s2">"http://example.com/api/kittens/3"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
+<pre class="highlight csharp"><code><span class="k">private</span> <span class="kt">string</span> <span class="nf">SignRequest</span><span class="p">(</span><span class="kt">string</span> <span class="n">request</span><span class="p">,</span> <span class="kt">string</span> <span class="n">secretKey</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// encode base 64
+</span>    <span class="kt">string</span> <span class="n">policy</span> <span class="p">=</span> <span class="n">System</span><span class="p">.</span><span class="n">Convert</span><span class="p">.</span><span class="nf">ToBase64String</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="n">Text</span><span class="p">.</span><span class="n">ASCIIEncoding</span><span class="p">.</span><span class="n">ASCII</span><span class="p">.</span><span class="nf">GetBytes</span><span class="p">(</span><span class="n">request</span><span class="p">));</span>
+    <span class="c1">// hmac-sha1 with secretKey
+</span>    <span class="n">var</span> <span class="n">digest</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">HMACSHA1</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="n">Text</span><span class="p">.</span><span class="n">ASCIIEncoding</span><span class="p">.</span><span class="n">ASCII</span><span class="p">.</span><span class="nf">GetBytes</span><span class="p">(</span><span class="n">secretKey</span><span class="p">));</span>
+    <span class="n">digest</span><span class="p">.</span><span class="nf">Initialize</span><span class="p">();</span>
+    <span class="n">var</span> <span class="n">tmp</span> <span class="p">=</span> <span class="n">BitConverter</span><span class="p">.</span><span class="nf">ToString</span><span class="p">(</span><span class="n">digest</span><span class="p">.</span><span class="nf">ComputeHash</span><span class="p">(</span><span class="n">Encoding</span><span class="p">.</span><span class="n">ASCII</span><span class="p">.</span><span class="nf">GetBytes</span><span class="p">(</span><span class="n">policy</span><span class="p">)));</span>
+    <span class="c1">// remove "-" and downcase
+</span>    <span class="n">var</span> <span class="n">hmac</span> <span class="p">=</span> <span class="n">tmp</span><span class="p">.</span><span class="nf">Replace</span><span class="p">(</span><span class="s">"-"</span><span class="p">,</span> <span class="s">""</span><span class="p">).</span><span class="nf">ToLower</span><span class="p">();</span>
+    <span class="c1">// encode base64
+</span>    <span class="kt">string</span> <span class="n">signature</span> <span class="p">=</span> <span class="n">System</span><span class="p">.</span><span class="n">Convert</span><span class="p">.</span><span class="nf">ToBase64String</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="n">Text</span><span class="p">.</span><span class="n">ASCIIEncoding</span><span class="p">.</span><span class="n">ASCII</span><span class="p">.</span><span class="nf">GetBytes</span><span class="p">(</span><span class="n">hmac</span><span class="p">));</span>
+    <span class="k">return</span> <span class="n">signature</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre>
 
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre><code class="highlight json"><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Isis"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+<p>Exemple de fonction permettant de calculer une signature.</p>
+
+<h3 id="function-parameters">Function parameters</h3>
+
+<table><thead>
+<tr>
+<th>Nom</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>request</td>
+<td>Chaine à crypter</td>
+</tr>
+<tr>
+<td>secret_key</td>
+<td>Clé de cryptage</td>
+</tr>
+</tbody></table>
+
+<h3 id="function-return">Function return</h3>
+
+<table><thead>
+<tr>
+<th>Nom</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>retour</td>
+<td>Chaine cryptée</td>
+</tr>
+</tbody></table>
+
+<h2 id="headers">Headers</h2>
+<pre class="highlight ruby"><code><span class="k">def</span> <span class="nf">make_hearders_request</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">withuser</span> <span class="o">=</span> <span class="kp">false</span><span class="p">)</span>
+  <span class="n">jeton</span> <span class="o">=</span> <span class="nb">rand</span><span class="p">(</span><span class="mi">99999999</span><span class="p">).</span><span class="nf">to_s</span>
+  <span class="n">request</span><span class="p">[</span><span class="s2">"FIDELISA_JETON"</span><span class="p">]</span> <span class="o">=</span> <span class="n">jeton</span>
+  <span class="n">request</span><span class="p">[</span><span class="s2">"FIDELISA_PROVIDER"</span><span class="p">]</span> <span class="o">=</span> <span class="vi">@provider</span>
+  <span class="n">request</span><span class="p">[</span><span class="s2">"FIDELISA_PROVIDER_KEY"</span><span class="p">]</span> <span class="o">=</span> <span class="n">sign_request</span><span class="p">(</span><span class="vi">@provider</span> <span class="o">+</span> <span class="n">jeton</span><span class="p">,</span> <span class="vi">@provider_key</span> <span class="p">)</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">withuser</span><span class="p">)</span>
+    <span class="n">request</span><span class="p">[</span><span class="s2">"FIDELISA_APIUSER"</span><span class="p">]</span> <span class="o">=</span> <span class="vi">@user</span>
+    <span class="n">request</span><span class="p">[</span><span class="s2">"FIDELISA_APIUSER_KEY"</span><span class="p">]</span> <span class="o">=</span> <span class="n">sign_request</span><span class="p">(</span><span class="vi">@user</span> <span class="o">+</span> <span class="n">jeton</span><span class="p">,</span> <span class="vi">@user_key</span> <span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+<pre class="highlight csharp"><code><span class="k">public</span> <span class="k">void</span> <span class="nf">MakeHeadersRequest</span><span class="p">(</span><span class="n">HttpWebRequest</span> <span class="n">request</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">withUser</span> <span class="p">=</span> <span class="k">false</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">Random</span> <span class="n">rnd</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Random</span><span class="p">();</span>
+    <span class="kt">int</span> <span class="n">jeton</span> <span class="p">=</span> <span class="n">rnd</span><span class="p">.</span><span class="nf">Next</span><span class="p">(</span><span class="m">99999999</span><span class="p">);</span>
+    <span class="n">request</span><span class="p">.</span><span class="n">Headers</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="s">"FIDELISA_JETON"</span><span class="p">,</span> <span class="n">jeton</span><span class="p">.</span><span class="nf">ToString</span><span class="p">());</span>
+    <span class="n">request</span><span class="p">.</span><span class="n">Headers</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="s">"FIDELISA_PROVIDER"</span><span class="p">,</span> <span class="n">provider</span><span class="p">);</span>
+    <span class="n">request</span><span class="p">.</span><span class="n">Headers</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="s">"FIDELISA_PROVIDER_KEY"</span><span class="p">,</span> <span class="nf">SignRequest</span><span class="p">(</span><span class="n">provider</span> <span class="p">+</span> <span class="n">jeton</span><span class="p">,</span> <span class="n">providerKey</span><span class="p">));</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">withUser</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">request</span><span class="p">.</span><span class="n">Headers</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="s">"FIDELISA_APIUSER"</span><span class="p">,</span> <span class="n">user</span><span class="p">);</span>
+        <span class="n">request</span><span class="p">.</span><span class="n">Headers</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="s">"FIDELISA_APIUSER_KEY"</span><span class="p">,</span> <span class="nf">SignRequest</span><span class="p">(</span><span class="n">user</span> <span class="p">+</span> <span class="n">jeton</span><span class="p">,</span> <span class="n">userKey</span><span class="p">));</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>Fabrique des entêtes Fidelisa d&#39;une requête</p>
+
+<h3 id="function-parameters">Function parameters</h3>
+
+<table><thead>
+<tr>
+<th>Nom</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>request</td>
+<td>Requête à signer</td>
+</tr>
+<tr>
+<td>withUser</td>
+<td>Requête de type commerce ? true/false</td>
+</tr>
+</tbody></table>
+
+<h2 id="get">Get</h2>
+<pre class="highlight ruby"><code><span class="k">def</span> <span class="nf">get_programs</span>
+  <span class="n">http</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="vi">@uri</span><span class="p">.</span><span class="nf">host</span><span class="p">,</span> <span class="vi">@uri</span><span class="p">.</span><span class="nf">port</span><span class="p">)</span>
+  <span class="n">http</span><span class="p">.</span><span class="nf">use_ssl</span> <span class="o">=</span> <span class="kp">true</span>
+
+  <span class="n">request</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="o">::</span><span class="no">Get</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s2">"/api/shops/programs"</span><span class="p">)</span>
+  <span class="n">make_hearders_request</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="kp">true</span><span class="p">)</span>
+  <span class="n">response</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="nf">request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+  <span class="n">body</span> <span class="o">=</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="nf">body</span><span class="p">)</span>
+  <span class="n">body</span><span class="p">[</span><span class="s2">"programs"</span><span class="p">]</span>
+<span class="k">end</span>
+</code></pre>
+<pre class="highlight csharp"><code><span class="k">public</span> <span class="n">Programs</span> <span class="nf">GetPrograms</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">String</span> <span class="n">requestUrl</span> <span class="p">=</span> <span class="n">HOST_FIDELISA</span> <span class="p">+</span> <span class="s">"/api/shops/programs"</span><span class="p">;</span>
+    <span class="n">HttpWebRequest</span> <span class="n">request</span> <span class="p">=</span> <span class="n">WebRequest</span><span class="p">.</span><span class="nf">Create</span><span class="p">(</span><span class="n">requestUrl</span><span class="p">)</span> <span class="k">as</span> <span class="n">HttpWebRequest</span><span class="p">;</span>
+    <span class="nf">MakeHeadersRequest</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+
+    <span class="k">using</span> <span class="p">(</span><span class="n">HttpWebResponse</span> <span class="n">response</span> <span class="p">=</span> <span class="n">request</span><span class="p">.</span><span class="nf">GetResponse</span><span class="p">()</span> <span class="k">as</span> <span class="n">HttpWebResponse</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">DataContractJsonSerializer</span> <span class="n">jsonSerializer</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">DataContractJsonSerializer</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="n">Programs</span><span class="p">));</span>
+        <span class="n">Object</span> <span class="n">objResponse</span> <span class="p">=</span> <span class="n">jsonSerializer</span><span class="p">.</span><span class="nf">ReadObject</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="nf">GetResponseStream</span><span class="p">());</span>
+        <span class="k">return</span> <span class="n">objResponse</span> <span class="k">as</span> <span class="n">Programs</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>Exemple d&#39;appel d&#39;une fonction Get (liste des programmes)</p>
+
+<h3 id="function-parameters">Function parameters</h3>
+
+<table><thead>
+<tr>
+<th>Nom</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+
+<h3 id="function-return">Function return</h3>
+
+<table><thead>
+<tr>
+<th>Nom</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>retour</td>
+<td>Tableaux de programmes</td>
+</tr>
+</tbody></table>
+
+<h2 id="post">Post</h2>
+<pre class="highlight plaintext"><code>def init_shop
+  http = Net::HTTP.new(@uri.host, @uri.port)
+  http.use_ssl = true
+
+  request = Net::HTTP::Post.new("/api/shops/init")
+  request['Content-Type'] = 'application/json'
+  make_hearders_request(request, false)
+  request.body = ({ :shop =&gt; { "user_email" =&gt; @shop_mail } }).to_json
+  response = http.request(request)
+  body = JSON.parse(response.body)
+end
+</code></pre>
+<pre class="highlight csharp"><code><span class="k">public</span> <span class="n">Shop</span> <span class="nf">InitShop</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">String</span> <span class="n">requestUrl</span> <span class="p">=</span> <span class="n">HOST_FIDELISA</span> <span class="p">+</span> <span class="s">"/api/shops/init"</span><span class="p">;</span>
+    <span class="n">HttpWebRequest</span> <span class="n">request</span> <span class="p">=</span> <span class="p">(</span><span class="n">HttpWebRequest</span><span class="p">)</span><span class="n">WebRequest</span><span class="p">.</span><span class="nf">Create</span><span class="p">(</span><span class="n">requestUrl</span><span class="p">);</span>
+    <span class="n">request</span><span class="p">.</span><span class="n">Method</span> <span class="p">=</span> <span class="s">"POST"</span><span class="p">;</span>
+    <span class="nf">MakeHeadersRequest</span><span class="p">(</span><span class="n">request</span><span class="p">);</span>
+    <span class="n">request</span><span class="p">.</span><span class="n">ContentType</span> <span class="p">=</span> <span class="s">"application/json; charset=utf-8"</span><span class="p">;</span>
+
+    <span class="n">Shop</span> <span class="n">shop</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Shop</span> <span class="p">{</span> <span class="n">userMail</span> <span class="p">=</span> <span class="n">shopMail</span> <span class="p">};</span>
+    <span class="n">DataContractJsonSerializer</span> <span class="n">ser</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">DataContractJsonSerializer</span><span class="p">(</span><span class="n">shop</span><span class="p">.</span><span class="nf">GetType</span><span class="p">());</span>
+    <span class="n">MemoryStream</span> <span class="n">ms</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">MemoryStream</span><span class="p">();</span>
+    <span class="n">ser</span><span class="p">.</span><span class="nf">WriteObject</span><span class="p">(</span><span class="n">ms</span><span class="p">,</span> <span class="n">shop</span><span class="p">);</span>
+    <span class="n">String</span> <span class="n">json</span> <span class="p">=</span> <span class="n">Encoding</span><span class="p">.</span><span class="n">UTF8</span><span class="p">.</span><span class="nf">GetString</span><span class="p">(</span><span class="n">ms</span><span class="p">.</span><span class="nf">ToArray</span><span class="p">());</span>
+    <span class="n">StreamWriter</span> <span class="n">writer</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">StreamWriter</span><span class="p">(</span><span class="n">request</span><span class="p">.</span><span class="nf">GetRequestStream</span><span class="p">());</span>
+    <span class="n">writer</span><span class="p">.</span><span class="nf">Write</span><span class="p">(</span><span class="n">json</span><span class="p">);</span>
+    <span class="n">writer</span><span class="p">.</span><span class="nf">Close</span><span class="p">();</span>
+
+    <span class="k">using</span> <span class="p">(</span><span class="n">HttpWebResponse</span> <span class="n">response</span> <span class="p">=</span> <span class="n">request</span><span class="p">.</span><span class="nf">GetResponse</span><span class="p">()</span> <span class="k">as</span> <span class="n">HttpWebResponse</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">DataContractJsonSerializer</span> <span class="n">jsonSerializer</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">DataContractJsonSerializer</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="n">Shop</span><span class="p">));</span>
+        <span class="n">Object</span> <span class="n">objResponse</span> <span class="p">=</span> <span class="n">jsonSerializer</span><span class="p">.</span><span class="nf">ReadObject</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="nf">GetResponseStream</span><span class="p">());</span>
+        <span class="k">return</span> <span class="n">objResponse</span> <span class="k">as</span> <span class="n">Shop</span><span class="p">;</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre>
+
+<p>Exemple d&#39;appel d&#39;une fonction Post (Initialisation du shop)</p>
+
+<h3 id="function-parameters">Function parameters</h3>
+
+<table><thead>
+<tr>
+<th>Nom</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+
+<h3 id="function-return">Function return</h3>
+
+<table><thead>
+<tr>
+<th>Nom</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>retour</td>
+<td>Le shop initialisé</td>
+</tr>
+</tbody></table>
+
+<h2 id="date-et-montant">Date et Montant</h2>
+
+<p>Les dates sont au format YYYY-MM-DD
+Pour les montants, le séparateur de décimal est le “.” (point), il n’y a pas de séparateur de milliers.</p>
+
+<h1 id="shops">Shops</h1>
+
+<h2 id="initialisation">Initialisation</h2>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"shop"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"user_email"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"test3@fidelisa.com"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>This endpoint retrieves a specific kitten.</p>
+<blockquote>
+<p>Resultat JSON</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"title"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"test3"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"uuid"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"619E8B5AAD5E48138881C5E7774C86B2"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"key"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"FrZN6UChpqXBRKVExXVB"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"user_email"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"test3@fidelisa.com"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 
-<p><aside class="warning">If you&rsquo;re not using an administrator API key, note that some kittens will return 403 Forbidden if they are hidden for admins only.</aside></p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code class="prettyprint">GET http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
+<p>Permet d’initialiser la relation entre le shop et Fidelisa</p>
+
+<h3 id="authentification">Authentification</h3>
+
+<p>Type : <a href="#provider">Provider</a></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST /api/shops/init</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the cat to retrieve</td>
+<td>user_email</td>
+<td>body</td>
+<td>Email du shop</td>
 </tr>
 </tbody></table>
 
-          <h1 id='errors'>Errors</h1>
-<p><aside class="notice">This error section is stored in a separate file in <code class="prettyprint">includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files&hellip;just save them to the <code class="prettyprint">includes</code> folder and add them to the top of your <code class="prettyprint">index.md</code>&rsquo;s frontmatter. Files are included in the order listed.</aside></p>
+<h2 id="visualisation">Visualisation</h2>
 
-<p>The Kittn API uses the following error codes:</p>
+<blockquote>
+<p>Resultat JSON</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"title"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"test3"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"uuid"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"619E8B5AAD5E48138881C5E7774C86B2"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"key"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"FrZN6UChpqXBRKVExXVB"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"user_email"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"test@test.com"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Permet de visualiser un shop</p>
+
+<h3 id="authentification">Authentification</h3>
+
+<p>Type : <a href="#provider">Provider</a></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET /api/shops/{ShopId}</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ShopId</td>
+<td>path</td>
+<td>UUID du shop</td>
+</tr>
+</tbody></table>
+
+<h3 id="return-code">Return code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+</tbody></table>
+
+<h2 id="liste">Liste</h2>
+
+<blockquote>
+<p>Resultat JSON</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"shops"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"title"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Test 1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"uuid"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"FD39A1AA85AC4F3FB977DEA5A5786263"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"key"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"YAZX2TLVO19DEFVDFF8M"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"user_email"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"bva7nntn1zfpn4uhvzaw@fidelisa.com"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"title"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Test 2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"uuid"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"D0114EE251D14C5180991418736A6ACC"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"key"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"RCGQDPWTRQS2XZCHWEZB"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"user_email"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"9bpxdq5hzzmuuayovbfx@fidelisa.com"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Permet de récupérer la liste des shops attachés au provider</p>
+
+<h3 id="authentification">Authentification</h3>
+
+<p>Type : <a href="#provider">Provider</a></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET /api/shops</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+
+<h3 id="return-code">Return code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+</tbody></table>
+
+<h2 id="categories">Categories</h2>
+
+<blockquote>
+<p>Resultat JSON</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"categories"</span><span class="p">:</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"subtotal1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUBTOTAL1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"subtotal2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUBTOTAL2"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"subtotal3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUBTOTAL3"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"subtotal4"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"subtotal5"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"subtotal6"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"subtotal7"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"subtotal8"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"subtotal9"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Permet de récupérer un tableau des catégories paramétrées par le shop</p>
+
+<h3 id="authentification">Authentification</h3>
+
+<p>Type : <a href="#provider">Provider</a></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET /api/shops/categories</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+
+<h3 id="return-code">Return code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+</tbody></table>
+
+<h2 id="programmes">Programmes</h2>
+
+<blockquote>
+<p>Resultat JSON</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"programs"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"title"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Carte VIP"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"uuid"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"67B222DC2A92672CA8E9D2C6DCB785CB"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"title"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Carte Privilèges"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"uuid"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"8853A37D20967C9E099184814805AC31"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Permet de récupérer la liste des programmes d&#39;un commerce</p>
+
+<h3 id="authentification">Authentification</h3>
+
+<p>Type : <a href="#provider">Provider</a></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET /api/shops/programs</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+
+<h3 id="return-code">Return code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+</tbody></table>
+
+<h1 id="customers">Customers</h1>
+
+<h2 id="creation">Creation</h2>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"customer"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"email"</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="s2">"client@monmail.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"phone"</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="s2">"0123456789"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"first_name"</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="s2">"Pierre"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"last_name"</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="s2">"Martin"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"birth_day"</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="mi">19</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"birth_month"</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Resultat JSON</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"uuid"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"FD39A1AA85AC4F3FB977DEA5A5786263"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"email"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"client@monmail.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"phone"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"0123456789"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"first_name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Pierre"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"last_name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Martin"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Permet de créer un client pour le shop</p>
+
+<h3 id="authentification">Authentification</h3>
+
+<p>Type : <a href="#shop">Shop</a></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST /api/customers</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>email</td>
+<td>body</td>
+<td>Email du customer</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>body</td>
+<td>Phone du customer</td>
+</tr>
+<tr>
+<td>first_name</td>
+<td>body</td>
+<td> Prénom du customer</td>
+</tr>
+<tr>
+<td>last_name</td>
+<td>body</td>
+<td>Nom du customer</td>
+</tr>
+<tr>
+<td>birth_day</td>
+<td>body</td>
+<td>Jour anniversaire du customer (facultatif)</td>
+</tr>
+<tr>
+<td>birth_month</td>
+<td>body</td>
+<td>Mois anniversaire du customer (facultatif)</td>
+</tr>
+</tbody></table>
+
+<h3 id="return-code">Return code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>201</td>
+<td>Created</td>
+</tr>
+</tbody></table>
+
+<h2 id="visualisation">Visualisation</h2>
+
+<blockquote>
+<p>Resultat JSON</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"uuid"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"FD39A1AA85AC4F3FB977DEA5A5786263"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"email"</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="s2">"client@monmail.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"phone"</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="s2">"0123456789"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"first_name"</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="s2">"Pierre"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"last_name"</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="s2">"Martin"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Permet de voir un customer pour le shop</p>
+
+<h3 id="authentification">Authentification</h3>
+
+<p>Type : <a href="#shop">Shop</a></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET /api/customers/{uuid_customer}</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>uuid_customer</td>
+<td>path</td>
+<td>UUID du customer</td>
+</tr>
+</tbody></table>
+
+<h3 id="return-code">Return code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+</tbody></table>
+
+<h2 id="suppression">Suppression</h2>
+
+<p>Permet de supprimer un customer pour le shop</p>
+
+<h3 id="authentification">Authentification</h3>
+
+<p>Type : <a href="#shop">Shop</a></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">DELETE /api/customers/{uuid_customer}</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>uuid_customer</td>
+<td>path</td>
+<td>UUID du customer</td>
+</tr>
+</tbody></table>
+
+<h3 id="return-code">Return code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+</tbody></table>
+
+<h2 id="liste">Liste</h2>
+
+<blockquote>
+<p>Resultat JSON</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"customers"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"uuid"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"FD39A1AA85AC4F3FB977DEA5A5786263"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"email"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"client@monmail.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"phone"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"0123456789"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"first_name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Pierre"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"last_name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Martin"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Permet de récupérer la liste des customers d’un shop</p>
+
+<h3 id="authentification">Authentification</h3>
+
+<p>Type : <a href="#shop">Shop</a></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET /api/customers</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+
+<h3 id="return-code">Return code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+</tbody></table>
+
+<h2 id="cartes">Cartes</h2>
+
+<blockquote>
+<p>Resultat JSON</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"cards"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"uuid"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1DA03451947C4B91A0EAE4099AD01E26"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"title"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Carte Privilèges"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"points"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"expired_at"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-06-14"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Permet de récupérer la liste des cards d&#39;un customer</p>
+
+<h3 id="authentification">Authentification</h3>
+
+<p>Type : <a href="#shop">Shop</a></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET /api/customers/{uuid_customer}/cards</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>uuid_customer</td>
+<td>path</td>
+<td>UUID du customer</td>
+</tr>
+</tbody></table>
+
+<h3 id="return-code">Return code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+</tbody></table>
+
+<h2 id="date-d-39-expiration">Date d&#39;expiration</h2>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="s2">"1DA03451947C4B91A0EAE4099AD01E26"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"date"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-06-20"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"reset"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Permet de modifier la date d&#39;expiration d&#39;une card d&#39;un customer</p>
+
+<h3 id="authentification">Authentification</h3>
+
+<p>Type : <a href="#shop">Shop</a></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST /api/customers/{uuid_customer}/cards/expired_at</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>uuid_customer</td>
+<td>path</td>
+<td>UUID du customer</td>
+</tr>
+<tr>
+<td>id</td>
+<td>body</td>
+<td>UUID de la card (facultatif)</td>
+</tr>
+<tr>
+<td>date</td>
+<td>body</td>
+<td> Date d&#39;expiration de la card</td>
+</tr>
+<tr>
+<td>reset</td>
+<td>body</td>
+<td>Remise à zero des points</td>
+</tr>
+</tbody></table>
+
+<h3 id="return-code">Return code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+Si aucune card n'est passé en paramètre, c'est la carte par défaut du customer qui est expirée
+</aside>
+
+<h1 id="rule-basis">Rule Basis</h1>
+
+<h2 id="visualisation">Visualisation</h2>
+
+<blockquote>
+<p>Resultat JSON</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"rulebasis"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"SubTotal1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"item"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"N/A"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"exclude_discount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"f"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Item"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"item"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1234,4567"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"exclude_discount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Permet de récupérer les rulebasis pour un shop</p>
+
+<h3 id="authentification">Authentification</h3>
+
+<p>Type : <a href="#shop">Shop</a></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET /api/rulebasis</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>uuid_customer</td>
+<td>query</td>
+<td>UUID d&#39;un customer</td>
+</tr>
+</tbody></table>
+
+<h3 id="return-code">Return code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+Liste des types : Passage, TotalAmount, SubTotal1, SubTotal2, SubTotal3, SubTotal4, SubTotal5, SubTotal6, SubTotal7, SubTotal8, SubTotal9, Item
+</aside>
+
+<h1 id="ventes">Ventes</h1>
+
+<h2 id="creation">Creation</h2>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"bill"</span><span class="w"> </span><span class="p">:</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"total"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"123.50"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"date"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-01-15"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"uuid_customer"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"FD39A1AA85AC4F3FB977DEA5A5786263"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"details"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"SubTotal1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"123.50"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"quantity"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="w">
+       </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"type"</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="s2">"Item"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"item"</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="s2">"1234"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="s2">"12.50"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"quantity"</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Resultat JSON</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"bill"</span><span class="w"> </span><span class="p">:</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"date"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-01-15"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"total"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"123.5"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"errors"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"type"</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="s2">"Item"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"item"</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="s2">"11234"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"amount"</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="s2">"12.50"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"quantity"</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"error"</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="s2">"Not Use"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Permet d’ajouter des sales.</p>
+
+<h3 id="authentification">Authentification</h3>
+
+<p>Type : <a href="#shop">Shop</a></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST /api/sales/</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>total</td>
+<td>body</td>
+<td>Montant total l&#39;opération</td>
+</tr>
+<tr>
+<td>date</td>
+<td> body</td>
+<td> Date de l&#39;opération</td>
+</tr>
+<tr>
+<td>uuid_customer</td>
+<td>body</td>
+<td>UUID du customer</td>
+</tr>
+<tr>
+<td>details</td>
+<td>body</td>
+<td>Tableau de details</td>
+</tr>
+</tbody></table>
+
+<h3 id="return-code">Return code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>201</td>
+<td>CREATED</td>
+</tr>
+<tr>
+<td>404</td>
+<td>NOT FOUND</td>
+</tr>
+</tbody></table>
+
+<aside class="warning">
+S'il existe des erreurs, elles sont retournées dans un tableau.
+</aside>
+
+<h1 id="points">Points</h1>
+
+<h2 id="creation">Creation</h2>
+
+<p>Permet d&#39;ajouter des points à une card</p>
+
+<blockquote>
+<p>Avec un identifiant de carte connu</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"correction"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"points"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"customer_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"FD39A1AA85AC4F3FB977DEA5A5786263"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"card_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1DA03451947C4B91A0EAE4099AD01E26"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Si le customer n&#39;a qu&#39;une seule carte, celle-ci sera créditée automatiquement</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"correction"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"points"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"customer_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"FD39A1AA85AC4F3FB977DEA5A5786263"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="authentification">Authentification</h3>
+
+<p>Type : <a href="#shop">Shop</a></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST /api/corrections</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>points</td>
+<td>body</td>
+<td>Nombre de points à créditer sur la card</td>
+</tr>
+<tr>
+<td>customer_id</td>
+<td> body</td>
+<td> UUID du customer</td>
+</tr>
+<tr>
+<td>card_id</td>
+<td>body</td>
+<td>Card du customer (facultatif)</td>
+</tr>
+</tbody></table>
+
+<h3 id="return-code">Return code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>201</td>
+<td>CREATED</td>
+</tr>
+<tr>
+<td>422</td>
+<td>UNPROCESSABLE ENTITY</td>
+</tr>
+</tbody></table>
+
+<h1 id="cadeaux">Cadeaux</h1>
+
+<h2 id="client">Client</h2>
+
+<blockquote>
+<p>Resultat JSON</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"gifts"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"uuid"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"FD39A1AA85AC4F3FB977DEA5A5786263"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"title"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"10€ de bon d’achat"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"points"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Permet de récupérer la liste des cadeaux consommables par le client.</p>
+
+<h3 id="authentification">Authentification</h3>
+
+<p>Type : <a href="#shop">Shop</a></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET /api/gifts</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>uuid_customer</td>
+<td> query</td>
+<td> UUID du customer</td>
+</tr>
+<tr>
+<td>used</td>
+<td>query</td>
+<td>Filtrer les cadeaux déjà offerts (facultatif)</td>
+</tr>
+</tbody></table>
+
+<h3 id="return-code">Return code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>201</td>
+<td>CREATED</td>
+</tr>
+<tr>
+<td>404</td>
+<td>NOT FOUND</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+La propriété &ldquo;points&rdquo;, du retour correspond au nombre de points collectés sur la carte correspondant au cadeau. Cette propriété n’est disponible que lors de l’appel des cadeaux disponibles.
+</aside>
+
+<h2 id="consommation">Consommation</h2>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"uuid"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"AZEFDFD39A1AA85AC423JJL34NEZOJ3E"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"uuid_customer"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"FD39A1AA85AC4F3FB977DEA5A5786263"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Permet d’indiquer que le customer a consommé le cadeau</p>
+
+<h3 id="authentification">Authentification</h3>
+
+<p>Type : <a href="#shop">Shop</a></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST /api/gifts/award</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>uuid</td>
+<td> body</td>
+<td> UUID du cadeaux</td>
+</tr>
+<tr>
+<td>uuid_customer</td>
+<td> body</td>
+<td> UUID du customer</td>
+</tr>
+</tbody></table>
+
+<h3 id="return-code">Return code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>404</td>
+<td>NOT FOUND</td>
+</tr>
+</tbody></table>
+
+<h2 id="restauration">Restauration</h2>
+
+<p>Permet d’annuler la consommation d’un cadeau</p>
+
+<h3 id="authentification">Authentification</h3>
+
+<p>Type : <a href="#shop">Shop</a></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">DELETE /api/gifts/{uuid_gift}</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>uuid_gift</td>
+<td> path</td>
+<td> UUID du cadeaux</td>
+</tr>
+<tr>
+<td>uuid_customer</td>
+<td> query</td>
+<td> UUID du customer</td>
+</tr>
+</tbody></table>
+
+<h3 id="return-code">Return code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>404</td>
+<td>NOT FOUND</td>
+</tr>
+</tbody></table>
+
+<h1 id="notifications">Notifications</h1>
+
+<h2 id="envoi">Envoi</h2>
+
+<blockquote>
+<p>Pour un client unique</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"customer"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"FD39A1AA85AC4F3FB977DEA5A5786263"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"alert"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Message au client"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>pour un programme</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"program"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"FD39A1AA85AC4F3FB977DEA5A5786263"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"alert"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Message aux clients"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>pour un ensemble de clients avec des urls spécifiques</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"customers"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"D407587D800ECC6C629A52CD204C6E61"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"http://fidelisa.com/1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"FD39A1AA85AC4F3FB977DEA5A5786263"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"http://fidelisa.com/2"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"alert"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Message aux clients"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Permet d’envoyer une notification à un customer ou à tous les customers d’un programme de fidelité</p>
+
+<h3 id="authentification">Authentification</h3>
+
+<p>Type : <a href="#shop">Shop</a></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST /api/notifications</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>uuid_gift</td>
+<td> path</td>
+<td> UUID du cadeaux</td>
+</tr>
+<tr>
+<td>uuid_customer</td>
+<td> query</td>
+<td> UUID du customer</td>
+</tr>
+</tbody></table>
+
+<h3 id="return-code">Return code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+</tbody></table>
+
+          <h1 id="errors">Errors</h1>
+
+<p>L&#39;API Fidelisa utilise les codes d&#39;erreurs suivants:</p>
 
 <table><thead>
 <tr>
 <th>Error Code</th>
-<th>Meaning</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>400</td>
-<td>Bad Request &ndash; Your request sucks</td>
-</tr>
-<tr>
-<td>401</td>
-<td>Unauthorized &ndash; Your API key is wrong</td>
+<td>Bad Request &ndash; Votre requête est erronée</td>
 </tr>
 <tr>
 <td>403</td>
-<td>Forbidden &ndash; The kitten requested is hidden for administrators only</td>
+<td>Forbidden &ndash; Vous n&#39;avez pas les autorisations pour utiliser l&#39;API</td>
 </tr>
 <tr>
 <td>404</td>
-<td>Not Found &ndash; The specified kitten could not be found</td>
-</tr>
-<tr>
-<td>405</td>
-<td>Method Not Allowed &ndash; You tried to access a kitten with an invalid method</td>
-</tr>
-<tr>
-<td>406</td>
-<td>Not Acceptable &ndash; You requested a format that isn&rsquo;t json</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone &ndash; The kitten requested has been removed from our servers</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&rsquo;m a teapot</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too Many Requests &ndash; You&rsquo;re requesting too many kittens! Slown down!</td>
+<td>Not Found &ndash; L&#39;élément recherché est introuvable</td>
 </tr>
 <tr>
 <td>500</td>
-<td>Internal Server Error &ndash; We had a problem with our server. Try again later.</td>
-</tr>
-<tr>
-<td>503</td>
-<td>Service Unavailable &ndash; We&rsquo;re temporarially offline for maintanance. Please try again later.</td>
+<td>Internal Server Error &ndash; Un problème est survenu sur le serveur</td>
 </tr>
 </tbody></table>
 
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
                 <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
+                <a href="#" data-language-name="csharp">csharp</a>
           </div>
       </div>
     </div>
