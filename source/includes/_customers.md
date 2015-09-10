@@ -27,7 +27,7 @@
 }
 ```
 
-Permet de créer un client pour le shop
+Permet de créer un client pour le point de vente
 
 ### Authentification
 
@@ -38,15 +38,16 @@ Type : [Shop] (#shop)
 `POST /api/customers`
 
 ### Query Parameters
+*Customer*
 
 Parameter | Type | Description
 --------- | --------- | -----------
-email | body | Email du customer
-phone | body | Phone du customer
-first_name | body | Prénom du customer
-last_name | body | Nom du customer
-birth_day | body | Jour anniversaire du customer (facultatif)
-birth_month | body | Mois anniversaire du customer (facultatif)
+email | body | Email
+phone | body | Phone
+first_name | body | Prénom
+last_name | body | Nom
+birth_day | body | Jour anniversaire (facultatif)
+birth_month | body | Mois anniversaire  (facultatif)
 
 ### Return code
 Code | Description
@@ -68,7 +69,7 @@ Code | Description
 }
 ```
 
-Permet de voir un customer pour le shop
+Permet de voir un client pour le point de vente
 
 ### Authentification
 
@@ -82,7 +83,7 @@ Type : [Shop] (#shop)
 
 Parameter | Type | Description
 --------- | --------- | -----------
-customer_id | path | UUID du customer
+customer_id | path | UUID du client
 
 ### Return code
 Code | Description
@@ -92,7 +93,7 @@ Code | Description
 
 
 ## Suppression
-Permet de supprimer un customer pour le shop
+Permet de supprimer un client pour le point de vente
 
 ### Authentification
 
@@ -106,7 +107,7 @@ Type : [Shop] (#shop)
 
 Parameter | Type | Description
 --------- | --------- | -----------
-customer_id | path | UUID du customer
+customer_id | path | UUID du client
 
 ### Return code
 Code | Description
@@ -130,7 +131,7 @@ Code | Description
 }
 ```
 
-Permet de récupérer la liste des customers d’un shop
+Permet de récupérer la liste des clients d’un point de vente
 
 ### Authentification
 
@@ -169,7 +170,7 @@ Code | Description
 }
 ```
 
-Permet de récupérer la liste des cards d'un customer
+Permet de récupérer la liste des cartes d'un client
 
 ### Authentification
 
@@ -183,7 +184,7 @@ Type : [Shop] (#shop)
 
 Parameter | Type | Description
 --------- | --------- | -----------
-customer_id | path | UUID du customer
+customer_id | path | UUID du client
 
 ### Return code
 Code | Description
@@ -202,7 +203,7 @@ Code | Description
 }
 ```
 
-Permet de modifier la date d'expiration d'une card d'un customer
+Permet de modifier la date d'expiration d'une carte d'un client
 
 ### Authentification
 
@@ -216,9 +217,13 @@ Type : [Shop] (#shop)
 
 Parameter | Type | Description
 --------- | --------- | -----------
-customer_id | path | UUID du customer
-id | body | UUID de la card (facultatif)
-date | body | Date d'expiration de la card
+customer_id | path | UUID du client
+
+
+Parameter | Type | Description
+--------- | --------- | -----------
+id | body | UUID de la carte (facultatif)
+date | body | Date d'expiration de la carte
 reset | body | Remise à zero des points
 
 ### Return code

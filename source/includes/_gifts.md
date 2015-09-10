@@ -29,7 +29,7 @@ Type : [Shop] (#shop)
 
 Parameter | Type | Description
 --------- | --------- | -----------
-customer_id | query | UUID du customer
+customer_id | query | UUID du client
 used | query | Filtrer les cadeaux déjà offerts (facultatif)
 
 ### Return code
@@ -52,7 +52,7 @@ La propriété "points", du retour correspond au nombre de points collectés sur
 }
 ```
 
-Permet d’indiquer que le customer a consommé le cadeau
+Permet d’indiquer que le customer a consommé le cadeau.
 
 ### Authentification
 
@@ -67,7 +67,7 @@ Type : [Shop] (#shop)
 Parameter | Type | Description
 --------- | --------- | -----------
 uuid | body | UUID du cadeaux
-customer_id | body | UUID du customer
+customer_id | body | UUID du client
 
 
 ### Return code
@@ -93,7 +93,7 @@ Type : [Shop] (#shop)
 Parameter | Type | Description
 --------- | --------- | -----------
 gift_id | path | UUID du cadeaux
-customer_id | query | UUID du customer
+customer_id | query | UUID du client
 
 
 ### Return code

@@ -31,7 +31,7 @@
 }
 ```
 
-Permet d’envoyer une notification à un customer ou à tous les customers d’un programme de fidelité
+Permet d’envoyer une notification à un client ou à tous les clients d’un programme
 
 ### Authentification
 
@@ -42,10 +42,27 @@ Type : [Shop] (#shop)
 `POST /api/notifications`
 
 ### Query Parameters
+*Cas 1 : pour un client unique*
 
 Parameter | Type | Description
 --------- | --------- | -----------
+customer | body | UUID du client
+alert | body | Texte du message
 
+
+*Cas 2 : pour tous clients d'un programme*
+
+Parameter | Type | Description
+--------- | --------- | -----------
+program | body | UUID du programme
+alert | body | Texte du message
+
+*Cas 3 : pour des clients*
+
+Parameter | Type | Description
+--------- | --------- | -----------
+customers | body | Tabelau de clients
+alert | body | Texte du message
 
 ### Return code
 Code | Description

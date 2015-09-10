@@ -1,11 +1,22 @@
 #Lexique
 ##Definitions
+**Vocabulaire**
+
 Nom | Définition
 ------- | ------
-Provider | Editeur de logiciel, agence, fournisseur, ...
-Shop | Point de vente, ecommerce, ...
-Customer | Client d'un shop
+Fournisseur | Partenaires, Editeur de logiciel, Agence, ...
+Point de vente | Point de vente, Commerce, eCommerce, ...
+Client | Client d'un point de vente
+
+**Paramètres des requêtes**
+
+Type | Definitions
+-----| --------
+body | Elément du JSON envoyé au serveur
+path | Elément de l'url
+query | Paramètres de l'url
 
 ## Date et Montant
 Les dates sont au format YYYY-MM-DD
-Pour les montants, le séparateur de décimal est le “.” (point), il n’y a pas de séparateur de milliers.
+
+Le séparateur de décimal des montants est le “.” (point), il n’y a pas de séparateur de milliers.

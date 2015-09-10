@@ -38,10 +38,9 @@ FIDELISA_APIUSER_KEY correspond au calcul de la [signature](#Signature) avec com
   secret_key : FIDELISA_APIUSER
 ```
 
-Ces requêtes nécessitent les droits shop (ex: la création d’un client).
+Ces requêtes nécessitent les droits point de vente (ex: la création d’un client).
 
 Dans le header de la requête ajouter les éléments suivants :
-La partie Header du “fournisseur” (voir plus haut)
 
 Nom |  Description
 --------- | -----------

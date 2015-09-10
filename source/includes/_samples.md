@@ -116,7 +116,7 @@ public Programs GetPrograms()
 }
 ```
 
-Exemple d'appel d'une fonction Get (Liste des programmes)
+Exemple d'appel d'une fonction GET (Liste des programmes)
 
 ###Function parameters
 Nom | Description
@@ -171,7 +171,7 @@ public Shop InitShop()
 }
 ```
 
-Exemple d'appel d'une fonction Post (Initialisation du shop)
+Exemple d'appel d'une fonction POST (Initialisation du shop)
 
 ###Function parameters
 Nom | Description

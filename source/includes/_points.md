@@ -1,6 +1,6 @@
 #Points
 ##Creation
-Permet d'ajouter des points à une card
+Permet d'ajouter des points à une carte
 
 >Avec un identifiant de carte connu
 
@@ -34,15 +34,15 @@ Type : [Shop] (#shop)
 `POST /api/corrections`
 
 ### Query Parameters
+*Correction*
 
 Parameter | Type | Description
 --------- | --------- | -----------
-points | body | Nombre de points à créditer sur la card
-customer_id | body | UUID du customer
-card_id | body | Card du customer (facultatif)
+points | body | Nombre de points à créditer sur la carte
+customer_id | body | UUID du client
+card_id | body | Carte du client (facultatif)
 
 ### Return code
 Code | Description
 ------- | ---------
 201 | CREATED
-422 | UNPROCESSABLE ENTITY

@@ -20,7 +20,7 @@
 }
 ```
 
-Permet de récupérer les rulebasis pour un shop
+Permet de récupérer les règles liées aux programmes d'un point de vente
 
 ### Authentification
 
@@ -34,7 +34,7 @@ Type : [Shop] (#shop)
 
 Parameter | Type | Description
 --------- | --------- | -----------
-customer_id | query | UUID d'un customer
+customer_id | query | UUID d'un client
 
 ### Return code
 Code | Description

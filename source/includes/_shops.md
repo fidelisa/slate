@@ -20,7 +20,7 @@
 }
 ```
 
-Permet d’initialiser la relation entre le shop et Fidelisa
+Permet d’initialiser la relation entre le point de vente et Fidelisa
 
 ### Authentification
 
@@ -31,10 +31,16 @@ Type : [Provider] (#provider)
 `POST /api/shops/init`
 
 ### Query Parameters
+*Shop*
 
 Parameter | Type | Description
 --------- | ----------- | -----------
-user_email | body | Email du shop  
+user_email | body | Email du point de vente  
+
+### Return code
+Code | Description
+------- | ---------
+200 | OK
 
 
 ## Visualisation
@@ -49,7 +55,7 @@ user_email | body | Email du shop
 }
 ```
 
-Permet de visualiser un shop
+Permet de visualiser un point de vente
 
 ### Authentification
 
@@ -63,7 +69,7 @@ Type : [Provider] (#provider)
 
 Parameter | Type | Description
 --------- | --------- | -----------
-ShopId | path | UUID du shop
+ShopId | path | UUID du point de vente
 
 
 ### Return code
@@ -94,7 +100,7 @@ Code | Description
 }
 ```
 
-Permet de récupérer la liste des boutiques attachés au fournisseur
+Permet de récupérer la liste des points de vente attachés au fournisseur
 
 ### Authentification
 
@@ -136,7 +142,7 @@ Code | Description
 }
 ```
 
-Permet de récupérer un tableau des catégories paramétrées par le shop
+Permet de récupérer un tableau des catégories paramétrées par le point de vente
 
 ### Authentification
 
