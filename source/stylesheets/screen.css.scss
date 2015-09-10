@@ -189,12 +189,7 @@ html, body {
       padding-left: $nav-padding + $nav-indent;
       font-size: 12px;
     }
-
-    // for embossed look:
-    @include embossed-bg;
-    &>li:last-child {
-      box-shadow: none; // otherwise it'll overflow out of the subheader
-    }
+    
   }
 
   .toc-footer {
