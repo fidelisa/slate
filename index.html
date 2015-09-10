@@ -39,7 +39,7 @@
       </div>
         <ul class="toc-footer">
             <li><a href='mailto:contact@fidelisa.com'>Contactez-nous</a></li>
-            <li><a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
+            <li><a href='http://github.com/tripit/slate'>Powered by Slate</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
@@ -48,35 +48,21 @@
         
           <h1 id="introduction">Introduction</h1>
 
-<p>L’interfaçage entre le logiciel de caisse et Fidelisa repose sur l’API Fidelisa (API REST).
-Pour faire fonctionner les API, l’éditeur de logiciel de caisse doit être référencé par Fidelisa. Dans Fidelisa, le nom du logiciel de caisse figure dans le compte commerçant et permet l’authentification Editeur nécessaire à la connexion aux API.</p>
+<p>Bienvenue dans la documentation de <strong>Fidelisa API</strong> !</p>
 
-<p>Fonctionnellement, plusieurs scénarios sont possibles. L’éditeur du logiciel de caisse détermine ce scénario en fonction du niveau d’intégration qu’il souhaite.</p>
+<p>L&#39;API vous permet en tant que fournisseur (Partenaire, Editeur de logiciel, Agence, &hellip;) de gérer l&#39;ensemble des actions nécessairent au fonctionnement de FIDELISA.</p>
 
-<p>Le commerçant crée ses cartes de fidélité dans Fidelisa et indique sur quelles bases s’effectue le calcul des points fidélité.</p>
+<p>Des exemples de codes sont fournis (Ruby, C#, &hellip;) dans la partie droite de la page, d&#39;autres seront bientôt disponibles.</p>
 
-<p>Ces bases peuvent être de 5 types :</p>
-
-<ul>
-<li>Total des achats</li>
-<li>Nombre de visites</li>
-<li>Catégories</li>
-<li>Marques de produits</li>
-<li>Certaines lignes de ticket</li>
-</ul>
-
-<p>Le TPV transmet les informations utiles au calcul de fidélité et Fidelisa met automatiquement à jour les cartes de fidélité en temps réel, jusqu’au smartphone du client.</p>
-
-<p><strong>Gestion des catégories TPV</strong>
-Le TPV dispose de 9 catégories personnalisables proposées sous la forme d’agrégats utilisables par Fidelisa (catégories). Le paramétrage de ces catégories est effectué par nos soins lors du référencement du TPV.</p>
-
-<p><strong>Communication avec les clients</strong>
-Fidelisa apporte également un canal de communication aux commerçants via notification (pour les clients équipés de smartphone), mail ou SMS.
-Cette “messagerie” peut être directement utilisée depuis le TPV via l’API correspondante : “Notification-création”.</p>
+<aside class="notice">
+Pour toutes questions n'hésitez pas à nous contacter <a href="mailto:contact@fidelisa.com">contact@fidelisa.com</a>
+</aside>
 
           <h1 id="lexique">Lexique</h1>
 
 <h2 id="definitions">Definitions</h2>
+
+<p><strong>Vocabulaire</strong></p>
 
 <table><thead>
 <tr>
@@ -85,23 +71,46 @@ Cette “messagerie” peut être directement utilisée depuis le TPV via l’AP
 </tr>
 </thead><tbody>
 <tr>
-<td>Provider</td>
-<td>Editeur de logiciel, agence, fournisseur, &hellip;</td>
+<td>Fournisseur</td>
+<td>Partenaires, Editeur de logiciel, Agence, &hellip;</td>
 </tr>
 <tr>
-<td>Shop</td>
-<td>Point de vente, ecommerce, &hellip;</td>
+<td>Point de vente</td>
+<td>Point de vente, Commerce, eCommerce, &hellip;</td>
 </tr>
 <tr>
-<td>Customer</td>
-<td>Client d&#39;un shop</td>
+<td>Client</td>
+<td>Client d&#39;un point de vente</td>
+</tr>
+</tbody></table>
+
+<p><strong>Paramètres des requêtes</strong></p>
+
+<table><thead>
+<tr>
+<th>Type</th>
+<th>Definitions</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>body</td>
+<td>Elément du JSON envoyé au serveur</td>
+</tr>
+<tr>
+<td>path</td>
+<td>Elément de l&#39;url</td>
+</tr>
+<tr>
+<td>query</td>
+<td>Paramètres de l&#39;url</td>
 </tr>
 </tbody></table>
 
 <h2 id="date-et-montant">Date et Montant</h2>
 
-<p>Les dates sont au format YYYY-MM-DD
-Pour les montants, le séparateur de décimal est le “.” (point), il n’y a pas de séparateur de milliers.</p>
+<p>Les dates sont au format YYYY-MM-DD</p>
+
+<p>Le séparateur de décimal des montants est le “.” (point), il n’y a pas de séparateur de milliers.</p>
 
           <h1 id="authentification">Authentification</h1>
 
@@ -157,10 +166,9 @@ FIDELISA_APIUSER_KEY correspond au calcul de la [signature](#Signature) avec com
   secret_key : FIDELISA_APIUSER
 </code></pre>
 
-<p>Ces requêtes nécessitent les droits shop (ex: la création d’un client).</p>
+<p>Ces requêtes nécessitent les droits point de vente (ex: la création d’un client).</p>
 
-<p>Dans le header de la requête ajouter les éléments suivants :
-La partie Header du “fournisseur” (voir plus haut)</p>
+<p>Dans le header de la requête ajouter les éléments suivants :</p>
 
 <table><thead>
 <tr>
@@ -331,7 +339,7 @@ La partie Header du “fournisseur” (voir plus haut)</p>
 <span class="p">}</span>
 </code></pre>
 
-<p>Exemple d&#39;appel d&#39;une fonction Get (Liste des programmes)</p>
+<p>Exemple d&#39;appel d&#39;une fonction GET (Liste des programmes)</p>
 
 <h3 id="function-parameters">Function parameters</h3>
 
@@ -397,7 +405,7 @@ La partie Header du “fournisseur” (voir plus haut)</p>
 <span class="p">}</span>
 </code></pre>
 
-<p>Exemple d&#39;appel d&#39;une fonction Post (Initialisation du shop)</p>
+<p>Exemple d&#39;appel d&#39;une fonction POST (Initialisation du shop)</p>
 
 <h3 id="function-parameters">Function parameters</h3>
 
@@ -444,7 +452,7 @@ La partie Header du “fournisseur” (voir plus haut)</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Permet d’initialiser la relation entre le shop et Fidelisa</p>
+<p>Permet d’initialiser la relation entre le point de vente et Fidelisa</p>
 
 <h3 id="authentification">Authentification</h3>
 
@@ -456,6 +464,8 @@ La partie Header du “fournisseur” (voir plus haut)</p>
 
 <h3 id="query-parameters">Query Parameters</h3>
 
+<p><em>Shop</em></p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -466,7 +476,21 @@ La partie Header du “fournisseur” (voir plus haut)</p>
 <tr>
 <td>user_email</td>
 <td>body</td>
-<td>Email du shop</td>
+<td>Email du point de vente</td>
+</tr>
+</tbody></table>
+
+<h3 id="return-code">Return code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
 </tr>
 </tbody></table>
 
@@ -483,7 +507,7 @@ La partie Header du “fournisseur” (voir plus haut)</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Permet de visualiser un shop</p>
+<p>Permet de visualiser un point de vente</p>
 
 <h3 id="authentification">Authentification</h3>
 
@@ -505,7 +529,7 @@ La partie Header du “fournisseur” (voir plus haut)</p>
 <tr>
 <td>ShopId</td>
 <td>path</td>
-<td>UUID du shop</td>
+<td>UUID du point de vente</td>
 </tr>
 </tbody></table>
 
@@ -546,7 +570,7 @@ La partie Header du “fournisseur” (voir plus haut)</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Permet de récupérer la liste des boutiques attachés au fournisseur</p>
+<p>Permet de récupérer la liste des points de vente attachés au fournisseur</p>
 
 <h3 id="authentification">Authentification</h3>
 
@@ -602,7 +626,7 @@ La partie Header du “fournisseur” (voir plus haut)</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Permet de récupérer un tableau des catégories paramétrées par le shop</p>
+<p>Permet de récupérer un tableau des catégories paramétrées par le point de vente</p>
 
 <h3 id="authentification">Authentification</h3>
 
@@ -719,7 +743,7 @@ La partie Header du “fournisseur” (voir plus haut)</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Permet de créer un client pour le shop</p>
+<p>Permet de créer un client pour le point de vente</p>
 
 <h3 id="authentification">Authentification</h3>
 
@@ -731,6 +755,8 @@ La partie Header du “fournisseur” (voir plus haut)</p>
 
 <h3 id="query-parameters">Query Parameters</h3>
 
+<p><em>Customer</em></p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -741,32 +767,32 @@ La partie Header du “fournisseur” (voir plus haut)</p>
 <tr>
 <td>email</td>
 <td>body</td>
-<td>Email du customer</td>
+<td>Email</td>
 </tr>
 <tr>
 <td>phone</td>
 <td>body</td>
-<td>Phone du customer</td>
+<td>Phone</td>
 </tr>
 <tr>
 <td>first_name</td>
 <td>body</td>
-<td> Prénom du customer</td>
+<td> Prénom</td>
 </tr>
 <tr>
 <td>last_name</td>
 <td>body</td>
-<td>Nom du customer</td>
+<td>Nom</td>
 </tr>
 <tr>
 <td>birth_day</td>
 <td>body</td>
-<td>Jour anniversaire du customer (facultatif)</td>
+<td>Jour anniversaire (facultatif)</td>
 </tr>
 <tr>
 <td>birth_month</td>
 <td>body</td>
-<td>Mois anniversaire du customer (facultatif)</td>
+<td>Mois anniversaire  (facultatif)</td>
 </tr>
 </tbody></table>
 
@@ -798,7 +824,7 @@ La partie Header du “fournisseur” (voir plus haut)</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Permet de voir un customer pour le shop</p>
+<p>Permet de voir un client pour le point de vente</p>
 
 <h3 id="authentification">Authentification</h3>
 
@@ -820,7 +846,7 @@ La partie Header du “fournisseur” (voir plus haut)</p>
 <tr>
 <td>customer_id</td>
 <td>path</td>
-<td>UUID du customer</td>
+<td>UUID du client</td>
 </tr>
 </tbody></table>
 
@@ -840,7 +866,7 @@ La partie Header du “fournisseur” (voir plus haut)</p>
 
 <h2 id="suppression">Suppression</h2>
 
-<p>Permet de supprimer un customer pour le shop</p>
+<p>Permet de supprimer un client pour le point de vente</p>
 
 <h3 id="authentification">Authentification</h3>
 
@@ -862,7 +888,7 @@ La partie Header du “fournisseur” (voir plus haut)</p>
 <tr>
 <td>customer_id</td>
 <td>path</td>
-<td>UUID du customer</td>
+<td>UUID du client</td>
 </tr>
 </tbody></table>
 
@@ -898,7 +924,7 @@ La partie Header du “fournisseur” (voir plus haut)</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Permet de récupérer la liste des customers d’un shop</p>
+<p>Permet de récupérer la liste des clients d’un point de vente</p>
 
 <h3 id="authentification">Authentification</h3>
 
@@ -950,7 +976,7 @@ La partie Header du “fournisseur” (voir plus haut)</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Permet de récupérer la liste des cards d&#39;un customer</p>
+<p>Permet de récupérer la liste des cartes d&#39;un client</p>
 
 <h3 id="authentification">Authentification</h3>
 
@@ -972,7 +998,7 @@ La partie Header du “fournisseur” (voir plus haut)</p>
 <tr>
 <td>customer_id</td>
 <td>path</td>
-<td>UUID du customer</td>
+<td>UUID du client</td>
 </tr>
 </tbody></table>
 
@@ -998,7 +1024,7 @@ La partie Header du “fournisseur” (voir plus haut)</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Permet de modifier la date d&#39;expiration d&#39;une card d&#39;un customer</p>
+<p>Permet de modifier la date d&#39;expiration d&#39;une carte d&#39;un client</p>
 
 <h3 id="authentification">Authentification</h3>
 
@@ -1020,17 +1046,26 @@ La partie Header du “fournisseur” (voir plus haut)</p>
 <tr>
 <td>customer_id</td>
 <td>path</td>
-<td>UUID du customer</td>
+<td>UUID du client</td>
 </tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
 <tr>
 <td>id</td>
 <td>body</td>
-<td>UUID de la card (facultatif)</td>
+<td>UUID de la carte (facultatif)</td>
 </tr>
 <tr>
 <td>date</td>
 <td>body</td>
-<td> Date d&#39;expiration de la card</td>
+<td> Date d&#39;expiration de la carte</td>
 </tr>
 <tr>
 <td>reset</td>
@@ -1080,7 +1115,7 @@ Si aucune carte n'est passée en paramètre, c'est la carte par défaut du clien
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Permet de récupérer les rulebasis pour un shop</p>
+<p>Permet de récupérer les règles liées aux programmes d&#39;un point de vente</p>
 
 <h3 id="authentification">Authentification</h3>
 
@@ -1102,7 +1137,7 @@ Si aucune carte n'est passée en paramètre, c'est la carte par défaut du clien
 <tr>
 <td>customer_id</td>
 <td>query</td>
-<td>UUID d&#39;un customer</td>
+<td>UUID d&#39;un client</td>
 </tr>
 </tbody></table>
 
@@ -1171,7 +1206,9 @@ Liste des types : Passage, TotalAmount, SubTotal1, SubTotal2, SubTotal3, SubTota
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Permet d’ajouter des sales.</p>
+<p>Permet d’ajouter des ventes pour un client.</p>
+
+<p>Le tableau contenant le detail des ventes correspond à l&#39;alimentation des règles des programmes. Si des détails ne correpondent à aucune règle de programme, elles sont ignorées.</p>
 
 <h3 id="authentification">Authentification</h3>
 
@@ -1182,6 +1219,8 @@ Liste des types : Passage, TotalAmount, SubTotal1, SubTotal2, SubTotal3, SubTota
 <p><code class="prettyprint">POST /api/sales/</code></p>
 
 <h3 id="query-parameters">Query Parameters</h3>
+
+<p><em>Bill</em>  </p>
 
 <table><thead>
 <tr>
@@ -1212,6 +1251,37 @@ Liste des types : Passage, TotalAmount, SubTotal1, SubTotal2, SubTotal3, SubTota
 </tr>
 </tbody></table>
 
+<p><em>Detail</em></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>body</td>
+<td>Règle impactée par ce détail</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>body</td>
+<td>Montant correspondant à la règle</td>
+</tr>
+<tr>
+<td>quantity</td>
+<td>body</td>
+<td>Quantité correspondant à la règle</td>
+</tr>
+<tr>
+<td>item</td>
+<td> body</td>
+<td> Code de l&#39;élément du détail (types &ldquo;item&rdquo; uniquement ) (facultatif)</td>
+</tr>
+</tbody></table>
+
 <h3 id="return-code">Return code</h3>
 
 <table><thead>
@@ -1238,7 +1308,7 @@ S'il existe des erreurs, elles sont retournées dans un tableau.
 
 <h2 id="creation">Creation</h2>
 
-<p>Permet d&#39;ajouter des points à une card</p>
+<p>Permet d&#39;ajouter des points à une carte</p>
 
 <blockquote>
 <p>Avec un identifiant de carte connu</p>
@@ -1273,6 +1343,8 @@ S'il existe des erreurs, elles sont retournées dans un tableau.
 
 <h3 id="query-parameters">Query Parameters</h3>
 
+<p><em>Correction</em></p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1283,17 +1355,17 @@ S'il existe des erreurs, elles sont retournées dans un tableau.
 <tr>
 <td>points</td>
 <td>body</td>
-<td>Nombre de points à créditer sur la card</td>
+<td>Nombre de points à créditer sur la carte</td>
 </tr>
 <tr>
 <td>customer_id</td>
 <td> body</td>
-<td> UUID du customer</td>
+<td> UUID du client</td>
 </tr>
 <tr>
 <td>card_id</td>
 <td>body</td>
-<td>Card du customer (facultatif)</td>
+<td>Carte du client (facultatif)</td>
 </tr>
 </tbody></table>
 
@@ -1308,10 +1380,6 @@ S'il existe des erreurs, elles sont retournées dans un tableau.
 <tr>
 <td>201</td>
 <td>CREATED</td>
-</tr>
-<tr>
-<td>422</td>
-<td>UNPROCESSABLE ENTITY</td>
 </tr>
 </tbody></table>
 
@@ -1355,7 +1423,7 @@ S'il existe des erreurs, elles sont retournées dans un tableau.
 <tr>
 <td>customer_id</td>
 <td> query</td>
-<td> UUID du customer</td>
+<td> UUID du client</td>
 </tr>
 <tr>
 <td>used</td>
@@ -1393,7 +1461,7 @@ La propriété &ldquo;points&rdquo;, du retour correspond au nombre de points co
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Permet d’indiquer que le customer a consommé le cadeau</p>
+<p>Permet d’indiquer que le customer a consommé le cadeau.</p>
 
 <h3 id="authentification">Authentification</h3>
 
@@ -1420,7 +1488,7 @@ La propriété &ldquo;points&rdquo;, du retour correspond au nombre de points co
 <tr>
 <td>customer_id</td>
 <td> body</td>
-<td> UUID du customer</td>
+<td> UUID du client</td>
 </tr>
 </tbody></table>
 
@@ -1471,7 +1539,7 @@ La propriété &ldquo;points&rdquo;, du retour correspond au nombre de points co
 <tr>
 <td>customer_id</td>
 <td> query</td>
-<td> UUID du customer</td>
+<td> UUID du client</td>
 </tr>
 </tbody></table>
 
@@ -1527,7 +1595,7 @@ La propriété &ldquo;points&rdquo;, du retour correspond au nombre de points co
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Permet d’envoyer une notification à un customer ou à tous les customers d’un programme de fidelité</p>
+<p>Permet d’envoyer une notification à un client ou à tous les clients d’un programme</p>
 
 <h3 id="authentification">Authentification</h3>
 
@@ -1539,6 +1607,8 @@ La propriété &ldquo;points&rdquo;, du retour correspond au nombre de points co
 
 <h3 id="query-parameters">Query Parameters</h3>
 
+<p><em>Cas 1 : pour un client unique</em></p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1546,6 +1616,58 @@ La propriété &ldquo;points&rdquo;, du retour correspond au nombre de points co
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>customer</td>
+<td>body</td>
+<td> UUID du client</td>
+</tr>
+<tr>
+<td>alert</td>
+<td> body</td>
+<td>Texte du message</td>
+</tr>
+</tbody></table>
+
+<p><em>Cas 2 : pour tous clients d&#39;un programme</em></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>program</td>
+<td>body</td>
+<td>UUID du programme</td>
+</tr>
+<tr>
+<td>alert</td>
+<td> body</td>
+<td>Texte du message</td>
+</tr>
+</tbody></table>
+
+<p><em>Cas 3 : pour des clients</em></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>customers</td>
+<td>body</td>
+<td>Tabelau de clients</td>
+</tr>
+<tr>
+<td>alert</td>
+<td> body</td>
+<td>Texte du message</td>
+</tr>
 </tbody></table>
 
 <h3 id="return-code">Return code</h3>
@@ -1583,6 +1705,10 @@ La propriété &ldquo;points&rdquo;, du retour correspond au nombre de points co
 <tr>
 <td>404</td>
 <td>Not Found &ndash; L&#39;élément recherché est introuvable</td>
+</tr>
+<tr>
+<td>422</td>
+<td>Unprocessable entity &ndash; L’entité fournie avec la requête est incompréhensible ou incomplète.</td>
 </tr>
 <tr>
 <td>500</td>
