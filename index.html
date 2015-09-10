@@ -45,7 +45,8 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id="introduction">Introduction</h1>
+        
+          <h1 id="introduction">Introduction</h1>
 
 <p>L’interfaçage entre le logiciel de caisse et Fidelisa repose sur l’API Fidelisa (API REST).
 Pour faire fonctionner les API, l’éditeur de logiciel de caisse doit être référencé par Fidelisa. Dans Fidelisa, le nom du logiciel de caisse figure dans le compte commerçant et permet l’authentification Editeur nécessaire à la connexion aux API.</p>
@@ -73,7 +74,9 @@ Le TPV dispose de 9 catégories personnalisables proposées sous la forme d’ag
 Fidelisa apporte également un canal de communication aux commerçants via notification (pour les clients équipés de smartphone), mail ou SMS.
 Cette “messagerie” peut être directement utilisée depuis le TPV via l’API correspondante : “Notification-création”.</p>
 
-<h1 id="lexique">Lexique</h1>
+          <h1 id="lexique">Lexique</h1>
+
+<h2 id="definitions">Definitions</h2>
 
 <table><thead>
 <tr>
@@ -95,15 +98,12 @@ Cette “messagerie” peut être directement utilisée depuis le TPV via l’AP
 </tr>
 </tbody></table>
 
-<h1 id="support">Support</h1>
+<h2 id="date-et-montant">Date et Montant</h2>
 
-<p>Un support (mail ou téléphone) pour toute question technique ou fonctionnelle relative à l’implémentation de Fidelisa.</p>
+<p>Les dates sont au format YYYY-MM-DD
+Pour les montants, le séparateur de décimal est le “.” (point), il n’y a pas de séparateur de milliers.</p>
 
-<p>Les icônes (plusieurs formats disponibles) pour afficher dans le TPV par exemple l’état du client (inscrit sur Fidelisa ou non).</p>
-
-<p>Des squelettes de code pour les principaux languages permettant de faciliter l’implémentation de l’API.</p>
-
-<h1 id="authentification">Authentification</h1>
+          <h1 id="authentification">Authentification</h1>
 
 <h2 id="provider">Provider</h2>
 
@@ -190,7 +190,7 @@ La partie Header du “fournisseur” (voir plus haut)</p>
 </tr>
 </tbody></table>
 
-<h1 id="exemples-de-code">Exemples de code</h1>
+          <h1 id="exemples-de-code">Exemples de code</h1>
 
 <h2 id="signature">Signature</h2>
 <pre class="highlight ruby"><code><span class="k">def</span> <span class="nf">sign_request</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">secret_key</span><span class="p">)</span>
@@ -423,12 +423,7 @@ La partie Header du “fournisseur” (voir plus haut)</p>
 </tr>
 </tbody></table>
 
-<h2 id="date-et-montant">Date et Montant</h2>
-
-<p>Les dates sont au format YYYY-MM-DD
-Pour les montants, le séparateur de décimal est le “.” (point), il n’y a pas de séparateur de milliers.</p>
-
-<h1 id="shops">Shops</h1>
+          <h1 id="shops">Shops</h1>
 
 <h2 id="initialisation">Initialisation</h2>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -696,7 +691,7 @@ Pour les montants, le séparateur de décimal est le “.” (point), il n’y a
 </tr>
 </tbody></table>
 
-<h1 id="customers">Customers</h1>
+          <h1 id="customers">Customers</h1>
 
 <h2 id="creation">Creation</h2>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -1062,7 +1057,7 @@ Pour les montants, le séparateur de décimal est le “.” (point), il n’y a
 Si aucune carte n'est passée en paramètre, c'est la carte par défaut du client qui est expirée
 </aside>
 
-<h1 id="rule-basis">Rule Basis</h1>
+          <h1 id="rule-basis">Rule Basis</h1>
 
 <h2 id="visualisation">Visualisation</h2>
 
@@ -1129,7 +1124,7 @@ Si aucune carte n'est passée en paramètre, c'est la carte par défaut du clien
 Liste des types : Passage, TotalAmount, SubTotal1, SubTotal2, SubTotal3, SubTotal4, SubTotal5, SubTotal6, SubTotal7, SubTotal8, SubTotal9, Item
 </aside>
 
-<h1 id="sales">Sales</h1>
+          <h1 id="sales">Sales</h1>
 
 <h2 id="creation">Creation</h2>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -1239,7 +1234,7 @@ Liste des types : Passage, TotalAmount, SubTotal1, SubTotal2, SubTotal3, SubTota
 S'il existe des erreurs, elles sont retournées dans un tableau.
 </aside>
 
-<h1 id="points">Points</h1>
+          <h1 id="points">Points</h1>
 
 <h2 id="creation">Creation</h2>
 
@@ -1320,7 +1315,7 @@ S'il existe des erreurs, elles sont retournées dans un tableau.
 </tr>
 </tbody></table>
 
-<h1 id="gifts">Gifts</h1>
+          <h1 id="gifts">Gifts</h1>
 
 <h2 id="client">Client</h2>
 
@@ -1498,7 +1493,7 @@ La propriété &ldquo;points&rdquo;, du retour correspond au nombre de points co
 </tr>
 </tbody></table>
 
-<h1 id="notifications">Notifications</h1>
+          <h1 id="notifications">Notifications</h1>
 
 <h2 id="envoi">Envoi</h2>
 
