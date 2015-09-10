@@ -67,11 +67,10 @@ $phone-width: $tablet-width - $nav-width; // min width before reverting to mobil
 
 // FONTS
 ////////////////////
-@import url(https://fonts.googleapis.com/css?family=Muli:300);
-@import url(https://fonts.googleapis.com/css?family=Muli);
 
+@import url(http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext);
 %default-font {
-  font-family: "Muli", "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
   font-size: 13px;
 }
 
@@ -109,4 +108,8 @@ $search-box-border-color: #666;
      word-break: break-word;
 
         hyphens: auto;
+}
+
+h1, h2, .tocify-wrapper li {
+  text-transform: uppercase;
 }
