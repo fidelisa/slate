@@ -9,7 +9,10 @@
     "first_name"  : "Pierre",
     "last_name"  : "Martin",
     "birth_day"  : 19,
-    "birth_month"  : 10
+    "birth_month"  : 10,
+    "points" : 20,
+    "replace_points": true,
+    "reason" : "Initialisation de la carte"
   }
 }
 ```
@@ -48,6 +51,15 @@ first_name | body | Prénom
 last_name | body | Nom
 birth_day | body | Jour anniversaire (facultatif)
 birth_month | body | Mois anniversaire  (facultatif)
+
+*Les paramètres suivants permettent d'initialiser (ou d'ajouter)
+ des points à la carte du client créé (ou existant)*
+
+Parameter | Type | Description
+--------- | --------- | -----------
+points | body | Nombre de points (facultatif)
+replace_points | body | Remplace les points existants (facultatif)
+reason | body | Raison de la mise en place des points (facultatif)
 
 ### Return code
 Code | Description

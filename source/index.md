@@ -24,6 +24,7 @@ includes:
 - sales
 - points
 - gifts
+- specialgains
 - notifications
 
 # errors
