@@ -870,6 +870,11 @@ FIDELISA_APIUSER_KEY correspond au calcul de la [signature](#Signature) avec com
 <td>body</td>
 <td>Mois anniversaire  (facultatif)</td>
 </tr>
+<tr>
+<td>third_id</td>
+<td> body</td>
+<td>ID tiers géré par le fournisseur</td>
+</tr>
 </tbody></table>
 
 <p><em>Les paramètres suivants permettent d&#39;initialiser (ou d&#39;ajouter)
@@ -1046,6 +1051,36 @@ FIDELISA_APIUSER_KEY correspond au calcul de la [signature](#Signature) avec com
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>without_card</td>
+<td>path</td>
+<td>Filtre les clients sans carte si true</td>
+</tr>
+<tr>
+<td>email</td>
+<td>path</td>
+<td>Filtre les clients avec cette email (non sensible à la casse)</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>path</td>
+<td>Filtre les clients avec ce n° de téléphone norme local (ex pour la france &ldquo;0123456789&rdquo;)</td>
+</tr>
+<tr>
+<td>third_id</td>
+<td>path</td>
+<td>Filtre les clients par ID tiers</td>
+</tr>
+<tr>
+<td>devices</td>
+<td>path</td>
+<td>Filtre les clients qui ont activés les notifications push</td>
+</tr>
+<tr>
+<td>date</td>
+<td>path</td>
+<td>Filtre les clients créés depuis la date</td>
+</tr>
 </tbody></table>
 
 <h3 id="return-code">Return code</h3>
