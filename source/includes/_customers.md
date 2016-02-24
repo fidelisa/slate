@@ -51,6 +51,7 @@ first_name | body | Prénom
 last_name | body | Nom
 birth_day | body | Jour anniversaire (facultatif)
 birth_month | body | Mois anniversaire  (facultatif)
+third_id | body | ID tiers géré par le fournisseur
 
 *Les paramètres suivants permettent d'initialiser (ou d'ajouter)
  des points à la carte du client créé (ou existant)*
@@ -157,6 +158,13 @@ Type : [Shop] (#shop)
 
 Parameter | Type | Description
 --------- | --------- | -----------
+without_card| path | Filtre les clients sans carte si true
+email| path | Filtre les clients avec cette email (non sensible à la casse)
+phone| path | Filtre les clients avec ce n° de téléphone norme local (ex pour la france "0123456789")
+third_id| path | Filtre les clients par ID tiers
+devices| path | Filtre les clients qui ont activés les notifications push
+date| path | Filtre les clients créés depuis la date
+
 
 ### Return code
 Code | Description
