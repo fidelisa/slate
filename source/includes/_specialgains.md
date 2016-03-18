@@ -8,7 +8,9 @@
 {
   "uuid" : "FD39A1AA85AC4F3FB977DEA5A5786263",
   "points": 40,
-  "price": "20.0"
+  "price": "20.0",
+  "dicount": "15",
+  "code": "E23X45TT"
 }
 ```
 
