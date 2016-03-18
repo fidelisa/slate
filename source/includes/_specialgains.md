@@ -42,7 +42,9 @@ Code | Description
 {
   "uuid" : "FD39A1AA85AC4F3FB977DEA5A5786263",
   "points": 40,
-  "price": "20.0"
+  "price": "20.0",
+  "dicount": "15",
+  "code": "E23X45TT"
 }
 ```
 
@@ -88,7 +90,9 @@ Code | Description
       "account_id": "0BEB6DDDVVAFA43AA859567F67C4480AB",
       "card_id": "A6700E63DDFDFD5A78E12C387845B90E7",
       "image_id": null,
-      "price": "20.0"
+      "price": "20.0",
+      "dicount": "15",
+      "code": "E23X45TT"
     }
   ]
 }

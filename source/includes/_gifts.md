@@ -9,7 +9,10 @@
     {
       "uuid" : "FD39A1AA85AC4F3FB977DEA5A5786263",
       "title" : "10€ de bon d’achat",
-      "points" : 123
+      "points" : 123,
+      "price": "25.00",
+      "dicount": "15",
+      "code": "E23X45TT"
     }
   ]
 }
