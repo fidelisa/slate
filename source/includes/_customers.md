@@ -10,6 +10,11 @@
     "last_name"  : "Martin",
     "birth_day"  : 19,
     "birth_month"  : 10,
+    "address1": "SAVOIE TECHNOLAC",
+    "address2": "",
+    "zipcode": "73370",
+    "city": "LE BOURGET DU LAC",
+    "country": "FR",
     "points" : 20,
     "replace_points": true,
     "reason" : "Initialisation de la carte"
