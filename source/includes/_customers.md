@@ -259,3 +259,72 @@ Code | Description
 <aside class="notice">
 Si aucune carte n'est passée en paramètre, c'est la carte par défaut du client qui est expirée
 </aside>
+
+## Parrain
+>  Resultat JSON
+
+```json
+{
+  "uuid": "D7BE44C125024FD299AFF47156227660",
+  "first_name": "Pierre",
+  "last_name": "Martin"
+}
+```
+
+Permet de récupérer le parrain d'un client.
+
+### Authentification
+
+Type : [Shop] (#shop)
+
+### HTTP Request
+
+`GET /api/customers/:customer_id/godfather`
+
+### Query Parameters
+
+Parameter | Type | Description
+--------- | --------- | -----------
+customer_id | path | UUID du client
+
+### Return code
+Code | Description
+------- | ---------
+200 | OK
+
+## Filleuls
+>  Resultat JSON
+
+```json
+{
+  "customers": [
+    {
+      "uuid": "70A8A8A5E56640456C23A0D922446DF3",
+      "first_name": "Martin",
+      "last_name": "Sophie",
+      "date_gain": null
+    }
+  ]
+}
+```
+
+Permet de récupérer la liste des filleuls d'un client.
+
+### Authentification
+
+Type : [Shop] (#shop)
+
+### HTTP Request
+
+`GET /api/customers/:customer_id/godsons`
+
+### Query Parameters
+
+Parameter | Type | Description
+--------- | --------- | -----------
+customer_id | path | UUID du client
+
+### Return code
+Code | Description
+------- | ---------
+200 | OK
