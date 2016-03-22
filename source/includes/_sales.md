@@ -7,6 +7,7 @@
     "total" : "123.50",
     "date" : "2013-01-15",
     "customer_id" : "FD39A1AA85AC4F3FB977DEA5A5786263",
+    "external_id" : "241367676",
     "details" : [
       {
         "type" : "SubTotal1",
@@ -49,6 +50,7 @@ Permet d’ajouter des ventes pour un client.
 
 Le tableau contenant le detail des ventes correspond à l'alimentation des règles des programmes. Si des détails ne correpondent à aucune règle de programme, elles sont ignorées.
 
+
 ### Authentification
 
 Type : [Shop] (#shop)
@@ -65,6 +67,7 @@ Parameter | Type | Description
 total | body | Montant total l'opération
 date | body | Date de l'opération
 customer_id | body | UUID du customer
+external_id | body | Identifiant externe libre
 details | body | Tableau de details
 
 *Detail*
