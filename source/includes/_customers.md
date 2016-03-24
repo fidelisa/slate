@@ -176,8 +176,6 @@ Code | Description
 ------- | ---------
 200 | OK
 
-
-
 ## Cartes
 
 >  Resultat JSON
@@ -215,8 +213,6 @@ customer_id | path | UUID du client
 Code | Description
 ------- | ---------
 200 | OK
-
-
 
 ## Date d'expiration
 
@@ -328,3 +324,53 @@ customer_id | path | UUID du client
 Code | Description
 ------- | ---------
 200 | OK
+
+## Code barre
+
+> Exemple avec une carte
+
+```json
+{
+    "card_id"  : "1DA03451947C4B91A0EAE4099AD01E26",
+    "card_number" : "37634676873"
+}
+```
+
+> Exemple sans carte
+
+```json
+{
+    "card_number" : "37634676873"
+}
+```
+
+Permet de modifier le code barre d'une (ou de toutes les) carte(s) d'un client
+
+### Authentification
+
+Type : [Shop] (#shop)
+
+### HTTP Request
+
+`POST /api/customers/{customer_id}/card_number`
+
+### Query Parameters
+
+Parameter | Type | Description
+--------- | --------- | -----------
+customer_id | path | UUID du client
+
+
+Parameter | Type | Description
+--------- | --------- | -----------
+card_id | body | UUID de la carte (facultatif)
+card_number | body | Numéro de la carte
+
+### Return code
+Code | Description
+------- | ---------
+200 | OK
+
+<aside class="notice">
+Si aucune carte n'est passée, le numéro de carte est appliqué à toutes les cartes
+</aside>
