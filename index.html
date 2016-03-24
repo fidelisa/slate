@@ -1382,6 +1382,88 @@ Si aucune carte n'est passée en paramètre, c'est la carte par défaut du clien
 </tr>
 </tbody></table>
 
+<h2 id="code-barre">Code barre</h2>
+
+<blockquote>
+<p>Exemple avec une carte</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"card_id"</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="s2">"1DA03451947C4B91A0EAE4099AD01E26"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"card_number"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"37634676873"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Exemple sans carte</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"card_number"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"37634676873"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Permet de modifier le code barre d&#39;une (ou de toutes les) carte(s) d&#39;un client</p>
+
+<h3 id="authentification">Authentification</h3>
+
+<p>Type : <a href="#shop">Shop</a></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST /api/customers/{customer_id}/card_number</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>customer_id</td>
+<td>path</td>
+<td>UUID du client</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>card_id</td>
+<td>body</td>
+<td>UUID de la carte (facultatif)</td>
+</tr>
+<tr>
+<td>card_number</td>
+<td>body</td>
+<td> Numéro de la carte</td>
+</tr>
+</tbody></table>
+
+<h3 id="return-code">Return code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+Si aucune carte n'est passée, le numéro de carte est appliqué à toutes les cartes
+</aside>
+
           <h1 id="rule-basis">Rule Basis</h1>
 
 <h2 id="visualisation">Visualisation</h2>
