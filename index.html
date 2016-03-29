@@ -1772,378 +1772,6 @@ S'il existe des erreurs, elles sont retournées dans un tableau.
 </tr>
 </tbody></table>
 
-          <h1 id="gifts">Gifts</h1>
-
-<h2 id="client">Client</h2>
-
-<blockquote>
-<p>Resultat JSON</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"gifts"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"uuid"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"FD39A1AA85AC4F3FB977DEA5A5786263"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"title"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"10€ de bon d’achat"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"points"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"25.00"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E23X45TT"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<p>Permet de récupérer la liste des cadeaux consommables par le client.</p>
-
-<h3 id="authentification">Authentification</h3>
-
-<p>Type : <a href="#shop">Shop</a></p>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET /api/gifts</code></p>
-
-<h3 id="query-parameters">Query Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>customer_id</td>
-<td> query</td>
-<td> UUID du client</td>
-</tr>
-<tr>
-<td>used</td>
-<td>query</td>
-<td>Filtrer les cadeaux déjà offerts (facultatif)</td>
-</tr>
-</tbody></table>
-
-<h3 id="return-code">Return code</h3>
-
-<table><thead>
-<tr>
-<th>Code</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>201</td>
-<td>CREATED</td>
-</tr>
-<tr>
-<td>404</td>
-<td>NOT FOUND</td>
-</tr>
-</tbody></table>
-
-<aside class="notice">
-La propriété &ldquo;points&rdquo;, du retour correspond au nombre de points collectés sur la carte correspondant au cadeau. Cette propriété n’est disponible que lors de l’appel des cadeaux disponibles.
-</aside>
-
-<h2 id="consommation">Consommation</h2>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"uuid"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"AZEFDFD39A1AA85AC423JJL34NEZOJ3E"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"customer_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"FD39A1AA85AC4F3FB977DEA5A5786263"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<p>Permet d’indiquer que le customer a consommé le cadeau.</p>
-
-<h3 id="authentification">Authentification</h3>
-
-<p>Type : <a href="#shop">Shop</a></p>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">POST /api/gifts/award</code></p>
-
-<h3 id="query-parameters">Query Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>uuid</td>
-<td> body</td>
-<td> UUID du cadeaux</td>
-</tr>
-<tr>
-<td>customer_id</td>
-<td> body</td>
-<td> UUID du client</td>
-</tr>
-</tbody></table>
-
-<h3 id="return-code">Return code</h3>
-
-<table><thead>
-<tr>
-<th>Code</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>200</td>
-<td>OK</td>
-</tr>
-<tr>
-<td>404</td>
-<td>NOT FOUND</td>
-</tr>
-</tbody></table>
-
-<h2 id="restauration">Restauration</h2>
-
-<p>Permet d’annuler la consommation d’un cadeau</p>
-
-<h3 id="authentification">Authentification</h3>
-
-<p>Type : <a href="#shop">Shop</a></p>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">DELETE /api/gifts/{gift_id}</code></p>
-
-<h3 id="query-parameters">Query Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>gift_id</td>
-<td> path</td>
-<td> UUID du cadeaux</td>
-</tr>
-<tr>
-<td>customer_id</td>
-<td> query</td>
-<td> UUID du client</td>
-</tr>
-</tbody></table>
-
-<h3 id="return-code">Return code</h3>
-
-<table><thead>
-<tr>
-<th>Code</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>200</td>
-<td>OK</td>
-</tr>
-<tr>
-<td>404</td>
-<td>NOT FOUND</td>
-</tr>
-</tbody></table>
-
-          <h1 id="gains-speciaux">Gains Speciaux</h1>
-
-<h2 id="liste">Liste</h2>
-
-<blockquote>
-<p>Resultat JSON</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"special_gains"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6DB912771BCA41A2ZZZDDA9C02A8B24B8"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5EE4E32CA6A4AA31EAAB68C381E4A825E"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"vendor_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"84D4B5BB95SSS31C12736ED9779E77E"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cadeau spécial"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"gived_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-09-30 08:00:09"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-02-24 10:45:18"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"expired_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-10-30"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0BEB6DDDVVAFA43AA859567F67C4480AB"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"card_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A6700E63DDFDFD5A78E12C387845B90E7"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"image_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20.0"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E23X45TT"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"web"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<p>Permet de voir la liste des cadeaux spéciaux d&#39;un client</p>
-
-<h3 id="authentification">Authentification</h3>
-
-<p>Type : <a href="#shop">Shop</a></p>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET /api/customers/{customer_id}/specialgains</code></p>
-
-<h3 id="query-parameters">Query Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>customer_id</td>
-<td>path</td>
-<td>UUID du client</td>
-</tr>
-<tr>
-<td>used</td>
-<td>query</td>
-<td>Filtre les gains consommés</td>
-</tr>
-<tr>
-<td>web</td>
-<td>query</td>
-<td>Filtre les gains consommables uniquement sur le web</td>
-</tr>
-</tbody></table>
-
-<h3 id="return-code">Return code</h3>
-
-<table><thead>
-<tr>
-<th>Code</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>200</td>
-<td>OK</td>
-</tr>
-</tbody></table>
-
-<h2 id="consommation">Consommation</h2>
-
-<blockquote>
-<p>Resultat JSON</p>
-</blockquote>
-<pre class="highlight json"><code><span class="w">
-</span><span class="p">{</span><span class="w">
-  </span><span class="nt">"uuid"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"FD39A1AA85AC4F3FB977DEA5A5786263"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"points"</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20.0"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E23X45TT"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<p>Permet de consommer un cadeau spécial</p>
-
-<h3 id="authentification">Authentification</h3>
-
-<p>Type : <a href="#shop">Shop</a></p>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET api/specialgains/{specialgain_id}/valid</code></p>
-
-<h3 id="query-parameters">Query Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>specialgain_id</td>
-<td>path</td>
-<td>UUID du cadeau special</td>
-</tr>
-</tbody></table>
-
-<h3 id="return-code">Return code</h3>
-
-<table><thead>
-<tr>
-<th>Code</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>200</td>
-<td>ok</td>
-</tr>
-</tbody></table>
-
-<h2 id="annuler-la-consommation">Annuler la consommation</h2>
-
-<blockquote>
-<p>Resultat JSON</p>
-</blockquote>
-<pre class="highlight json"><code><span class="w">
-</span><span class="p">{</span><span class="w">
-  </span><span class="nt">"uuid"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"FD39A1AA85AC4F3FB977DEA5A5786263"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"points"</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20.0"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E23X45TT"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<p>Permet d&#39;annuler la consommation d&#39;un cadeau spécial</p>
-
-<h3 id="authentification">Authentification</h3>
-
-<p>Type : <a href="#shop">Shop</a></p>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET api/specialgains/{specialgain_id}/unvalid</code></p>
-
-<h3 id="query-parameters">Query Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>specialgain_id</td>
-<td>path</td>
-<td>UUID du cadeau special</td>
-</tr>
-</tbody></table>
-
-<h3 id="return-code">Return code</h3>
-
-<table><thead>
-<tr>
-<th>Code</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>200</td>
-<td>ok</td>
-</tr>
-</tbody></table>
-
           <h1 id="notifications">Notifications</h1>
 
 <h2 id="envoi">Envoi</h2>
@@ -2264,6 +1892,612 @@ La propriété &ldquo;points&rdquo;, du retour correspond au nombre de points co
 <tr>
 <td>200</td>
 <td>OK</td>
+</tr>
+</tbody></table>
+
+          <h1 id="gains">Gains</h1>
+
+<h2 id="liste">Liste</h2>
+
+<blockquote>
+<p>Resultat JSON</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EB846456B1979BAB763DB04ECEC481C4"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"512E811DB8CF4AAC943CACFD84118099"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"vendor_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GiftGain"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"gived_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-03-29 10:06:25"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-03-29 10:14:02"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"expired_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4C0741AF77EE4410948EA9FB925A0A1A"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"card_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"48AA097CFF8146CBA809D12BAD225686"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"image_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"points"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"web"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5% sur prochain achat"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<p>Permet de voir la liste des cadeaux (paliers et spéciaux) d&#39;un client</p>
+
+<h3 id="authentification">Authentification</h3>
+
+<p>Type : <a href="#shop">Shop</a></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET /api/customers/{customer_id}/gains</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>customer_id</td>
+<td>path</td>
+<td>UUID du client</td>
+</tr>
+<tr>
+<td>used</td>
+<td>query</td>
+<td>Filtre les gains consommés</td>
+</tr>
+<tr>
+<td>web</td>
+<td>query</td>
+<td>Filtre les gains consommables uniquement sur le web</td>
+</tr>
+</tbody></table>
+
+<h3 id="return-code">Return code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+</tbody></table>
+
+<h2 id="consommation">Consommation</h2>
+
+<blockquote>
+<p>Resultat JSON</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EB846456B1979BAB763DB04ECEC481C4"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"512E811DB8CF4AAC943CACFD84118099"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"vendor_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GiftGain"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"gived_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-03-29 10:06:25"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-03-29 10:14:02"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"expired_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4C0741AF77EE4410948EA9FB925A0A1A"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"card_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"48AA097CFF8146CBA809D12BAD225686"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"image_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"points"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"web"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5% sur prochain achat"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Permet de consommer un cadeau</p>
+
+<h3 id="authentification">Authentification</h3>
+
+<p>Type : <a href="#shop">Shop</a></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET /api/customers/{customer_id}/gains/{gain_id}/valid</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>customer_id</td>
+<td>path</td>
+<td>UUID du client</td>
+</tr>
+<tr>
+<td>gain_id</td>
+<td>path</td>
+<td>UUID du cadeau</td>
+</tr>
+</tbody></table>
+
+<h3 id="return-code">Return code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>ok</td>
+</tr>
+</tbody></table>
+
+<h2 id="annuler-la-consommation">Annuler la consommation</h2>
+
+<blockquote>
+<p>Resultat JSON</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EB846456B1979BAB763DB04ECEC481C4"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"512E811DB8CF4AAC943CACFD84118099"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"vendor_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GiftGain"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"gived_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-03-29 10:06:25"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-03-29 10:14:02"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"expired_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4C0741AF77EE4410948EA9FB925A0A1A"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"card_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"48AA097CFF8146CBA809D12BAD225686"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"image_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"points"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"web"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5% sur prochain achat"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Permet d&#39;annuler la consommation d&#39;un cadeau</p>
+
+<h3 id="authentification">Authentification</h3>
+
+<p>Type : <a href="#shop">Shop</a></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET /api/customers/{customer_id}/gains/{gain_id}/unvalid</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>customer_id</td>
+<td>path</td>
+<td>UUID du client</td>
+</tr>
+<tr>
+<td>gain_id</td>
+<td>path</td>
+<td>UUID du cadeau</td>
+</tr>
+</tbody></table>
+
+<h3 id="return-code">Return code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>ok</td>
+</tr>
+</tbody></table>
+
+          <h1 id="gifts-obsol-te">Gifts (Obsolète)</h1>
+
+<h2 id="client">Client</h2>
+
+<aside class="warning">Cette api est obsolète utilisez <a href="http://localhost:4567/#gains">Gains</a></aside>
+
+<blockquote>
+<p>Resultat JSON</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"gifts"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"uuid"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"FD39A1AA85AC4F3FB977DEA5A5786263"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"title"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"10€ de bon d’achat"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"points"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"25.00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E23X45TT"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Permet de récupérer la liste des cadeaux consommables par le client.</p>
+
+<h3 id="authentification">Authentification</h3>
+
+<p>Type : <a href="#shop">Shop</a></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET /api/gifts</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>customer_id</td>
+<td> query</td>
+<td> UUID du client</td>
+</tr>
+<tr>
+<td>used</td>
+<td>query</td>
+<td>Filtrer les cadeaux déjà offerts (facultatif)</td>
+</tr>
+</tbody></table>
+
+<h3 id="return-code">Return code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>201</td>
+<td>CREATED</td>
+</tr>
+<tr>
+<td>404</td>
+<td>NOT FOUND</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+La propriété &ldquo;points&rdquo;, du retour correspond au nombre de points collectés sur la carte correspondant au cadeau. Cette propriété n’est disponible que lors de l’appel des cadeaux disponibles.
+</aside>
+
+<h2 id="consommation">Consommation</h2>
+
+<aside class="warning">Cette api est obsolète utilisez <a href="http://localhost:4567/#gains">Gains</a></aside>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"uuid"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"AZEFDFD39A1AA85AC423JJL34NEZOJ3E"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"customer_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"FD39A1AA85AC4F3FB977DEA5A5786263"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Permet d’indiquer que le customer a consommé le cadeau.</p>
+
+<h3 id="authentification">Authentification</h3>
+
+<p>Type : <a href="#shop">Shop</a></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST /api/gifts/award</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>uuid</td>
+<td> body</td>
+<td> UUID du cadeaux</td>
+</tr>
+<tr>
+<td>customer_id</td>
+<td> body</td>
+<td> UUID du client</td>
+</tr>
+</tbody></table>
+
+<h3 id="return-code">Return code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>404</td>
+<td>NOT FOUND</td>
+</tr>
+</tbody></table>
+
+<h2 id="restauration">Restauration</h2>
+
+<aside class="warning">Cette api est obsolète utilisez <a href="http://localhost:4567/#gains">Gains</a></aside>
+
+<p>Permet d’annuler la consommation d’un cadeau</p>
+
+<h3 id="authentification">Authentification</h3>
+
+<p>Type : <a href="#shop">Shop</a></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">DELETE /api/gifts/{gift_id}</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>gift_id</td>
+<td> path</td>
+<td> UUID du cadeaux</td>
+</tr>
+<tr>
+<td>customer_id</td>
+<td> query</td>
+<td> UUID du client</td>
+</tr>
+</tbody></table>
+
+<h3 id="return-code">Return code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>404</td>
+<td>NOT FOUND</td>
+</tr>
+</tbody></table>
+
+          <h1 id="gains-speciaux-obsol-te">Gains Speciaux (Obsolète)</h1>
+
+<h2 id="liste">Liste</h2>
+
+<aside class="warning">Cette api est obsolète utilisez <a href="http://localhost:4567/#gains">Gains</a></aside>
+
+<blockquote>
+<p>Resultat JSON</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"special_gains"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6DB912771BCA41A2ZZZDDA9C02A8B24B8"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5EE4E32CA6A4AA31EAAB68C381E4A825E"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"vendor_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"84D4B5BB95SSS31C12736ED9779E77E"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cadeau spécial"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"gived_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-09-30 08:00:09"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-02-24 10:45:18"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"expired_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-10-30"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0BEB6DDDVVAFA43AA859567F67C4480AB"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"card_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A6700E63DDFDFD5A78E12C387845B90E7"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"image_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20.0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E23X45TT"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"web"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Permet de voir la liste des cadeaux spéciaux d&#39;un client</p>
+
+<h3 id="authentification">Authentification</h3>
+
+<p>Type : <a href="#shop">Shop</a></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET /api/customers/{customer_id}/specialgains</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>customer_id</td>
+<td>path</td>
+<td>UUID du client</td>
+</tr>
+<tr>
+<td>used</td>
+<td>query</td>
+<td>Filtre les gains consommés</td>
+</tr>
+<tr>
+<td>web</td>
+<td>query</td>
+<td>Filtre les gains consommables uniquement sur le web</td>
+</tr>
+</tbody></table>
+
+<h3 id="return-code">Return code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+</tbody></table>
+
+<h2 id="consommation">Consommation</h2>
+
+<aside class="warning">Cette api est obsolète utilisez <a href="http://localhost:4567/#gains">Gains</a></aside>
+
+<blockquote>
+<p>Resultat JSON</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"uuid"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"FD39A1AA85AC4F3FB977DEA5A5786263"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"points"</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20.0"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E23X45TT"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Permet de consommer un cadeau spécial</p>
+
+<h3 id="authentification">Authentification</h3>
+
+<p>Type : <a href="#shop">Shop</a></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET api/specialgains/{specialgain_id}/valid</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>specialgain_id</td>
+<td>path</td>
+<td>UUID du cadeau special</td>
+</tr>
+</tbody></table>
+
+<h3 id="return-code">Return code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>ok</td>
+</tr>
+</tbody></table>
+
+<h2 id="annuler-la-consommation">Annuler la consommation</h2>
+
+<aside class="warning">Cette api est obsolète utilisez <a href="http://localhost:4567/#gains">Gains</a></aside>
+
+<blockquote>
+<p>Resultat JSON</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"uuid"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"FD39A1AA85AC4F3FB977DEA5A5786263"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"points"</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20.0"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E23X45TT"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Permet d&#39;annuler la consommation d&#39;un cadeau spécial</p>
+
+<h3 id="authentification">Authentification</h3>
+
+<p>Type : <a href="#shop">Shop</a></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET api/specialgains/{specialgain_id}/unvalid</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>specialgain_id</td>
+<td>path</td>
+<td>UUID du cadeau special</td>
+</tr>
+</tbody></table>
+
+<h3 id="return-code">Return code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>ok</td>
 </tr>
 </tbody></table>
 
