@@ -1,6 +1,6 @@
 #Gifts (Obsolète)
 ## Client
-<aside class="warning">Cette api est obsolète utilisez <a href="http://localhost:4567/#gains">Gains</a></aside>
+<aside class="warning">Cette api est obsolète utilisez <a href="#gains">Gains</a></aside>
 
 >  Resultat JSON
 
@@ -48,7 +48,7 @@ La propriété "points", du retour correspond au nombre de points collectés sur
 
 
 ## Consommation
-<aside class="warning">Cette api est obsolète utilisez <a href="http://localhost:4567/#gains">Gains</a></aside>
+<aside class="warning">Cette api est obsolète utilisez <a href="#gains">Gains</a></aside>
 
 ```json  
 {
@@ -83,7 +83,7 @@ Code | Description
 
 
 ## Restauration
-<aside class="warning">Cette api est obsolète utilisez <a href="http://localhost:4567/#gains">Gains</a></aside>
+<aside class="warning">Cette api est obsolète utilisez <a href="#gains">Gains</a></aside>
 
 Permet d’annuler la consommation d’un cadeau
 
