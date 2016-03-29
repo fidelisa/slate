@@ -1,5 +1,6 @@
-#Gains Speciaux
+#Gains Speciaux (Obsolète)
 ## Liste
+<aside class="warning">Cette api est obsolète utilisez <a href="http://localhost:4567/#gains">Gains</a></aside>
 
 >  Resultat JSON
 
@@ -52,6 +53,7 @@ Code | Description
 200 | OK
 
 ##Consommation
+<aside class="warning">Cette api est obsolète utilisez <a href="http://localhost:4567/#gains">Gains</a></aside>
 
 > Resultat JSON
 
@@ -88,6 +90,8 @@ Code | Description
 200 | ok
 
 ##Annuler la consommation
+<aside class="warning">Cette api est obsolète utilisez <a href="http://localhost:4567/#gains">Gains</a></aside>
+
 
 > Resultat JSON
 

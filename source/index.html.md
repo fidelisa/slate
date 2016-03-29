@@ -23,9 +23,10 @@ includes:
 - rulebasis
 - sales
 - points
+- notifications
+- gains
 - gifts
 - specialgains
-- notifications
 
 # errors
 - errors
