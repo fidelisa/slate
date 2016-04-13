@@ -971,7 +971,8 @@ FIDELISA_APIUSER_KEY correspond au calcul de la [signature](#Signature) avec com
   </span><span class="nt">"email"</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="s2">"client@monmail.com"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"phone"</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="s2">"0123456789"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"first_name"</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="s2">"Pierre"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"last_name"</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="s2">"Martin"</span><span class="w">
+  </span><span class="nt">"last_name"</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="s2">"Martin"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"status_name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Premium"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -1069,7 +1070,8 @@ FIDELISA_APIUSER_KEY correspond au calcul de la [signature](#Signature) avec com
       </span><span class="nt">"email"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"client@monmail.com"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"phone"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"0123456789"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"first_name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Pierre"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"last_name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Martin"</span><span class="w">
+      </span><span class="nt">"last_name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Martin"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"status_name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Premium"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -1123,6 +1125,16 @@ FIDELISA_APIUSER_KEY correspond au calcul de la [signature](#Signature) avec com
 <td>date</td>
 <td>path</td>
 <td>Filtre les clients créés depuis la date</td>
+</tr>
+<tr>
+<td>date_update</td>
+<td>path</td>
+<td>Filtre les clients modifiés depuis la date</td>
+</tr>
+<tr>
+<td>page</td>
+<td>path</td>
+<td>Renvoie la liste par lot de 50 clients (ex: 1 = les 50 premiers, 2 = les 50 suivants,&hellip;)</td>
 </tr>
 </tbody></table>
 
