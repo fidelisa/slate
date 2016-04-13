@@ -83,7 +83,8 @@ Code | Description
   "email"  : "client@monmail.com",
   "phone"  : "0123456789",
   "first_name"  : "Pierre",
-  "last_name"  : "Martin"
+  "last_name"  : "Martin",
+  "status_name" : "Premium"
 }
 ```
 
@@ -143,7 +144,8 @@ Code | Description
       "email" : "client@monmail.com",
       "phone" : "0123456789",
       "first_name" : "Pierre",
-      "last_name" : "Martin"
+      "last_name" : "Martin",
+      "status_name" : "Premium"
     }
   ]
 }
@@ -169,7 +171,8 @@ phone| path | Filtre les clients avec ce n° de téléphone norme local (ex pour
 third_id| path | Filtre les clients par ID tiers
 devices| path | Filtre les clients qui ont activés les notifications push
 date| path | Filtre les clients créés depuis la date
-
+date_update| path | Filtre les clients modifiés depuis la date
+page | path | Renvoie la liste par lot de 50 clients (ex: 1 = les 50 premiers, 2 = les 50 suivants,...)
 
 ### Return code
 Code | Description
