@@ -135,7 +135,7 @@ Pour toutes questions n'hésitez pas à nous contacter <a href="mailto:contact@f
 
 <h2 id="definitions">Definitions</h2>
 
-<p><strong>Vocabulaire</strong></p>
+<p><strong><em>Vocabulaire</em></strong></p>
 
 <table><thead>
 <tr>
@@ -157,7 +157,7 @@ Pour toutes questions n'hésitez pas à nous contacter <a href="mailto:contact@f
 </tr>
 </tbody></table>
 
-<p><strong>Paramètres des requêtes</strong></p>
+<p><strong><em>Paramètres des requêtes</em></strong></p>
 
 <table><thead>
 <tr>
@@ -575,7 +575,7 @@ FIDELISA_APIUSER_KEY correspond au calcul de la [signature](#Signature) avec com
 
 <h3 id="query-parameters">Query Parameters</h3>
 
-<p><em>Shop</em></p>
+<p><strong><em>Shop</em></strong></p>
 
 <table><thead>
 <tr>
@@ -914,7 +914,7 @@ FIDELISA_APIUSER_KEY correspond au calcul de la [signature](#Signature) avec com
 
 <h3 id="query-parameters">Query Parameters</h3>
 
-<p><em>Customer</em></p>
+<p><strong><em>Customer</em></strong></p>
 
 <table><thead>
 <tr>
@@ -1156,6 +1156,14 @@ FIDELISA_APIUSER_KEY correspond au calcul de la [signature](#Signature) avec com
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
+<blockquote>
+<p>Resultat JSON (Avec option pages=t)</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"pages"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
 <p>Permet de récupérer la liste des clients d’un point de vente</p>
 
 <h3 id="authentification">Authentification</h3>
@@ -1173,47 +1181,80 @@ FIDELISA_APIUSER_KEY correspond au calcul de la [signature](#Signature) avec com
 <th>Parameter</th>
 <th>Type</th>
 <th>Description</th>
+<th>Exemple</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>without_card</td>
 <td>path</td>
-<td>Filtre les clients sans carte si true</td>
+<td>Filtre les clients sans carte</td>
+<td>without_card=t</td>
 </tr>
 <tr>
 <td>email</td>
 <td>path</td>
 <td>Filtre les clients avec cette email (non sensible à la casse)</td>
+<td> email=monemail@mail.com</td>
 </tr>
 <tr>
 <td>phone</td>
 <td>path</td>
-<td>Filtre les clients avec ce n° de téléphone norme local (ex pour la france &ldquo;0123456789&rdquo;)</td>
+<td>Filtre les clients avec ce n° de téléphone norme local</td>
+<td>phone=0123456789</td>
 </tr>
 <tr>
 <td>third_id</td>
 <td>path</td>
 <td>Filtre les clients par ID tiers</td>
+<td>third_id=1234567</td>
 </tr>
 <tr>
 <td>devices</td>
 <td>path</td>
 <td>Filtre les clients qui ont activés les notifications push</td>
+<td>devices=t</td>
 </tr>
 <tr>
 <td>date</td>
 <td>path</td>
 <td>Filtre les clients créés depuis la date</td>
+<td>date=2016-07-02</td>
 </tr>
 <tr>
 <td>date_update</td>
 <td>path</td>
 <td>Filtre les clients modifiés depuis la date</td>
+<td>date_update=2016-07-02</td>
 </tr>
+</tbody></table>
+
+<h3 id="pages-parameters">Pages Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+<th>Exemple</th>
+</tr>
+</thead><tbody>
 <tr>
 <td>page</td>
 <td>path</td>
-<td>Renvoie la liste par lot de 50 clients (ex: 1 = les 50 premiers, 2 = les 50 suivants,&hellip;)</td>
+<td>Renvoie la liste par lot de client, le nombre de clients est définie par le paramètre perpage.</td>
+<td>page=10</td>
+</tr>
+<tr>
+<td>perpage</td>
+<td>path</td>
+<td>Permet de définir le nombre de clients par page, la valeur par défaut 50.</td>
+<td> perpage=200</td>
+</tr>
+<tr>
+<td>pages</td>
+<td>path</td>
+<td>Permet de connaitre le nombre total de pages</td>
+<td> pages=t</td>
 </tr>
 </tbody></table>
 
@@ -1684,7 +1725,7 @@ Liste des types : Passage, TotalAmount, SubTotal1, SubTotal2, SubTotal3, SubTota
 
 <h3 id="query-parameters">Query Parameters</h3>
 
-<p><em>Bill</em>  </p>
+<p><strong><em>Bill</em></strong>  </p>
 
 <table><thead>
 <tr>
@@ -1720,7 +1761,7 @@ Liste des types : Passage, TotalAmount, SubTotal1, SubTotal2, SubTotal3, SubTota
 </tr>
 </tbody></table>
 
-<p><em>Detail</em></p>
+<p><strong><em>Detail</em></strong></p>
 
 <table><thead>
 <tr>
@@ -1813,7 +1854,7 @@ S'il existe des erreurs, elles sont retournées dans un tableau.
 
 <h3 id="query-parameters">Query Parameters</h3>
 
-<p><em>Correction</em></p>
+<p><strong><em>Correction</em></strong></p>
 
 <table><thead>
 <tr>
@@ -1909,7 +1950,7 @@ S'il existe des erreurs, elles sont retournées dans un tableau.
 
 <h3 id="query-parameters">Query Parameters</h3>
 
-<p><em>Cas 1 : pour un client unique</em></p>
+<p><strong><em>Cas 1 : pour un client unique</em></strong></p>
 
 <table><thead>
 <tr>
@@ -1930,7 +1971,7 @@ S'il existe des erreurs, elles sont retournées dans un tableau.
 </tr>
 </tbody></table>
 
-<p><em>Cas 2 : pour tous clients d&#39;un programme</em></p>
+<p><strong><em>Cas 2 : pour tous clients d&#39;un programme</em></strong></p>
 
 <table><thead>
 <tr>
@@ -1951,7 +1992,7 @@ S'il existe des erreurs, elles sont retournées dans un tableau.
 </tr>
 </tbody></table>
 
-<p><em>Cas 3 : pour des clients</em></p>
+<p><strong><em>Cas 3 : pour des clients</em></strong></p>
 
 <table><thead>
 <tr>
@@ -2205,6 +2246,577 @@ S'il existe des erreurs, elles sont retournées dans un tableau.
 <tr>
 <td>200</td>
 <td>ok</td>
+</tr>
+</tbody></table>
+
+          <h1 id="targets">Targets</h1>
+
+<h2 id="creation-avec-fichier">Creation (avec fichier)</h2>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"target"</span><span class="w"> </span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Campagne n°1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Campagne_201670292"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"file_id"</span><span class="p">:</span><span class="s2">"EA8C650C379E4D7C921085A39D3084D5"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Resultat JSON</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CAC539ED500841229765A503715B0312"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Campagne n°1"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-07-05 07:29:12"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-07-05 07:29:12"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"file_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EA8C650C379E4D7C921085A39D3084D5"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BADAD0FA3EAF46CBA11CF2348F85B8F4"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Campagne_201670292"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"synced_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"vendor_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"D56EFC4B67084B168E9DC723F9D6F77A"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"customers_count"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Permet de créer une cible à partir d&#39;un <a href="/#upload">fichier téléchargé</a></p>
+
+<h3 id="authentification">Authentification</h3>
+
+<p>Type : <a href="#shop">Shop</a></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST /api/targets</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<p><strong><em>Customer</em></strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>title</td>
+<td>body</td>
+<td>Titre de la campagne</td>
+</tr>
+<tr>
+<td>external_id</td>
+<td>body</td>
+<td>ID tiers géré par le fournisseur (facultatif)</td>
+</tr>
+<tr>
+<td>file_id</td>
+<td>body</td>
+<td> ID du fichier téléchargé</td>
+</tr>
+</tbody></table>
+
+<h3 id="return-code">Return code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>201</td>
+<td>Created</td>
+</tr>
+</tbody></table>
+
+<h2 id="creation-avec-filtre">Creation (avec filtre)</h2>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"target"</span><span class="w"> </span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Campagne n°1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Campagne_201670292"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"filter"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">   
+      </span><span class="nt">"application"</span><span class="p">:</span><span class="w"> </span><span class="s2">"t"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"with_email"</span><span class="p">:</span><span class="s2">"t"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Resultat JSON</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50A271F87C934F34BEFAF12008534533"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Campagne n°1"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-07-05 15:30:05"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-07-05 15:30:05"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"filter"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"application"</span><span class="p">:</span><span class="w"> </span><span class="s2">"t"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"with_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"t"</span><span class="w">    
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"file_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BADAD0FA3EAF46CBA11CF2348F85B8F4"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Campagne_201670292"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"synced_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"vendor_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"D56EFC4B67084B168E9DC723F9D6F77A"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"customers_count"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Permet de créer une cible à partir d&#39;un filtre</p>
+
+<h3 id="authentification">Authentification</h3>
+
+<p>Type : <a href="#shop">Shop</a></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST /api/targets</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<p><strong><em>Customer</em></strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>title</td>
+<td>body</td>
+<td>Titre de la campagne</td>
+</tr>
+<tr>
+<td>external_id</td>
+<td>body</td>
+<td>ID tiers géré par le fournisseur (facultatif)</td>
+</tr>
+<tr>
+<td>filter</td>
+<td>body</td>
+<td> Filtre à appliquer sur les clients</td>
+</tr>
+</tbody></table>
+
+<p><strong><em>Filtre</em></strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Valeurs/exemples</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>application</td>
+<td>Utilise l&#39;applicatoin mobile</td>
+<td>&rsquo;t&rsquo;</td>
+</tr>
+<tr>
+<td>channel</td>
+<td>Canal de communication</td>
+<td>&lsquo;Notification&rsquo;, &#39;Mail&rsquo;</td>
+</tr>
+<tr>
+<td>gender</td>
+<td>Sexe</td>
+<td>&#39;Boy&rsquo;, &#39;Girl&rsquo;</td>
+</tr>
+<tr>
+<td>age_min</td>
+<td>Age minimum</td>
+<td>30</td>
+</tr>
+<tr>
+<td>age_max</td>
+<td>Age maximum</td>
+<td>40</td>
+</tr>
+<tr>
+<td>city</td>
+<td>Ville</td>
+<td>Le Bourget du Lac</td>
+</tr>
+<tr>
+<td>country</td>
+<td>Pays au format ISO3166</td>
+<td>FR</td>
+</tr>
+<tr>
+<td>zipcode</td>
+<td>Code postal</td>
+<td>78000</td>
+</tr>
+<tr>
+<td>notes</td>
+<td>Mot clé (recherche dans les notes)</td>
+<td></td>
+</tr>
+<tr>
+<td>tag1</td>
+<td>Valeur du tag 1</td>
+<td></td>
+</tr>
+<tr>
+<td>tag2</td>
+<td>Valeur du tag 2</td>
+<td></td>
+</tr>
+<tr>
+<td>tag3</td>
+<td>Valeur du tag 3</td>
+<td></td>
+</tr>
+<tr>
+<td>last_connexion_max</td>
+<td>Ne s&#39;est pas connecté depuis le AAAA-MM-DD</td>
+<td>2016-07-03</td>
+</tr>
+<tr>
+<td>last_visit_max</td>
+<td>N&#39;est pas venu depuis le AAAA-MM-DD</td>
+<td>2016-07-03</td>
+</tr>
+<tr>
+<td>with_phone</td>
+<td>Numéro de téléphone renseigné</td>
+<td> &rsquo;t&rsquo;</td>
+</tr>
+<tr>
+<td>with_email</td>
+<td>Adresse mail renseignée</td>
+<td>&rsquo;t&rsquo;</td>
+</tr>
+</tbody></table>
+
+<h3 id="return-code">Return code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>201</td>
+<td>Created</td>
+</tr>
+</tbody></table>
+
+<h2 id="mise-jour">Mise à jour</h2>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"json"</span><span class="p">:</span><span class="w"> </span><span class="s2">"idem création"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Resultat JSON</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"json"</span><span class="p">:</span><span class="w"> </span><span class="s2">"idem création"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Permet de modifier une cible</p>
+
+<h3 id="authentification">Authentification</h3>
+
+<p>Type : <a href="#shop">Shop</a></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PUT /api/targets</code></p>
+
+<p><code class="prettyprint">PATCH /api/targets</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<p>idem création</p>
+
+<h3 id="return-code">Return code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+</tbody></table>
+
+<h2 id="visualisation">Visualisation</h2>
+
+<blockquote>
+<p>Resultat JSON</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CAC539ED500841229765A503715B0312"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Campagne n°1"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-07-05 07:29:12"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-07-05 07:29:12"</span><span class="p">,</span><span class="w">  
+  </span><span class="nt">"file_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EA8C650C379E4D7C921085A39D3084D5"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BADAD0FA3EAF46CBA11CF2348F85B8F4"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Campagne_201670292"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"synced_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"vendor_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"D56EFC4B67084B168E9DC723F9D6F77A"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"customers_count"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Permet de voir une cible</p>
+
+<h3 id="authentification">Authentification</h3>
+
+<p>Type : <a href="#shop">Shop</a></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET /api/targets/{target_id}</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>target_id</td>
+<td>path</td>
+<td>UUID de la cible</td>
+</tr>
+</tbody></table>
+
+<h3 id="return-code">Return code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+</tbody></table>
+
+<h2 id="suppression">Suppression</h2>
+
+<p>Permet de supprimer une cible</p>
+
+<h3 id="authentification">Authentification</h3>
+
+<p>Type : <a href="#shop">Shop</a></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">DELETE /api/targets/{target_id}</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>target_id</td>
+<td>path</td>
+<td>UUID du client</td>
+</tr>
+</tbody></table>
+
+<h3 id="return-code">Return code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+</tbody></table>
+
+<h2 id="rafraichissement">Rafraichissement</h2>
+
+<p>Permet de rafraichir une cible</p>
+
+<h3 id="authentification">Authentification</h3>
+
+<p>Type : <a href="#shop">Shop</a></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET /api/targets/{target_id}/refresh</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>target_id</td>
+<td>path</td>
+<td>UUID du client</td>
+</tr>
+</tbody></table>
+
+<h3 id="return-code">Return code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+</tbody></table>
+
+<h2 id="liste">Liste</h2>
+
+<blockquote>
+<p>Resultat JSON</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"targets"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CAC539ED500841229765A503715B0312"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Campagne n°1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-07-05 07:29:12"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-07-05 07:29:12"</span><span class="p">,</span><span class="w">  
+      </span><span class="nt">"file_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EA8C650C379E4D7C921085A39D3084D5"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BADAD0FA3EAF46CBA11CF2348F85B8F4"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Campagne_201670292"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"synced_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"vendor_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"D56EFC4B67084B168E9DC723F9D6F77A"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"customers_count"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Permet de récupérer la liste des cibles</p>
+
+<h3 id="authentification">Authentification</h3>
+
+<p>Type : <a href="#shop">Shop</a></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET /api/targets</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>search</td>
+<td>path</td>
+<td>Filtre les cibles par leur titre</td>
+</tr>
+</tbody></table>
+
+<h3 id="return-code">Return code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+</tbody></table>
+
+<h2 id="upload">Upload</h2>
+
+<blockquote>
+<p>Resultat JSON</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"uuid"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1234587A32784B168E9DC723F9D6F77A"</span><span class="w">            
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Permet d&#39;envoyer un fichier contenant des clients.Le fichier doit contenir un UUID par ligne.</p>
+
+<p>La requête retourne un UUID qui peut-être utilisé lors de la création/mise à jour d&#39;une cible (file_id).</p>
+
+<h3 id="authentification">Authentification</h3>
+
+<p>Type : <a href="#shop">Shop</a></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET /api/targets/upload</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Content-type</td>
+<td>header</td>
+<td>multipart/form-data</td>
+</tr>
+<tr>
+<td>file</td>
+<td>body</td>
+<td> fichier contenant les uuid clients</td>
+</tr>
+</tbody></table>
+
+<h3 id="return-code">Return code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
 </tr>
 </tbody></table>
 
