@@ -86,7 +86,7 @@ Type : [Shop] (#shop)
 `POST /api/customers`
 
 ### Query Parameters
-*Customer*
+***Customer***
 
 Parameter | Type | Description
 --------- | --------- | -----------
@@ -230,6 +230,14 @@ Code | Description
 }
 ```
 
+>  Resultat JSON (Avec option pages=t)
+
+```json
+{
+  "pages" : 10
+}
+```
+
 Permet de récupérer la liste des clients d’un point de vente
 
 ### Authentification
@@ -242,16 +250,24 @@ Type : [Shop] (#shop)
 
 ### Query Parameters
 
-Parameter | Type | Description
---------- | --------- | -----------
-without_card| path | Filtre les clients sans carte si true
-email| path | Filtre les clients avec cette email (non sensible à la casse)
-phone| path | Filtre les clients avec ce n° de téléphone norme local (ex pour la france "0123456789")
-third_id| path | Filtre les clients par ID tiers
-devices| path | Filtre les clients qui ont activés les notifications push
-date| path | Filtre les clients créés depuis la date
-date_update| path | Filtre les clients modifiés depuis la date
-page | path | Renvoie la liste par lot de 50 clients (ex: 1 = les 50 premiers, 2 = les 50 suivants,...)
+Parameter | Type | Description | Exemple
+--------- | --------- | ----------- | -----------
+without_card| path | Filtre les clients sans carte | without_card=t
+email| path | Filtre les clients avec cette email (non sensible à la casse) | email=monemail@mail.com
+phone| path | Filtre les clients avec ce n° de téléphone norme local | phone=0123456789
+third_id| path | Filtre les clients par ID tiers | third_id=1234567
+devices| path | Filtre les clients qui ont activés les notifications push | devices=t
+date| path | Filtre les clients créés depuis la date | date=2016-07-02
+date_update| path | Filtre les clients modifiés depuis la date  | date_update=2016-07-02
+
+### Pages Parameters
+
+Parameter | Type | Description | Exemple
+--------- | --------- | ----------- | -----------
+page | path | Renvoie la liste par lot de client, le nombre de clients est définie par le paramètre perpage. | page=10
+perpage | path | Permet de définir le nombre de clients par page, la valeur par défaut 50. | perpage=200
+pages | path | Permet de connaitre le nombre total de pages | pages=t
+
 
 ### Return code
 Code | Description

@@ -25,6 +25,7 @@ includes:
 - points
 - notifications
 - gains
+- targets
 - gifts
 - specialgains
 

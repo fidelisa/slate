@@ -60,7 +60,7 @@ Type : [Shop] (#shop)
 `POST /api/sales/`
 
 ### Query Parameters
-*Bill*  
+***Bill***  
 
 Parameter | Type | Description
 --------- | --------- | -----------
@@ -70,7 +70,7 @@ customer_id | body | UUID du customer
 external_id | body | Identifiant externe libre
 details | body | Tableau de details
 
-*Detail*
+***Detail***
 
 Parameter | Type | Description
 --------- | --------- | -----------

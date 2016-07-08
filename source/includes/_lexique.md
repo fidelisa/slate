@@ -1,6 +1,6 @@
 #Lexique
 ##Definitions
-**Vocabulaire**
+***Vocabulaire***
 
 Nom | Définition
 ------- | ------
@@ -8,7 +8,7 @@ Fournisseur | Partenaires, Editeur de logiciel, Agence, ...
 Point de vente | Point de vente, Commerce, eCommerce, ...
 Client | Client d'un point de vente
 
-**Paramètres des requêtes**
+***Paramètres des requêtes***
 
 Type | Definitions
 -----| --------

@@ -35,7 +35,7 @@ Type : [Shop] (#shop)
 `POST /api/corrections`
 
 ### Query Parameters
-*Correction*
+***Correction***
 
 Parameter | Type | Description
 --------- | --------- | -----------

@@ -42,7 +42,7 @@ Type : [Shop] (#shop)
 `POST /api/notifications`
 
 ### Query Parameters
-*Cas 1 : pour un client unique*
+***Cas 1 : pour un client unique***
 
 Parameter | Type | Description
 --------- | --------- | -----------
@@ -50,14 +50,14 @@ customer | body | UUID du client
 alert | body | Texte du message
 
 
-*Cas 2 : pour tous clients d'un programme*
+***Cas 2 : pour tous clients d'un programme***
 
 Parameter | Type | Description
 --------- | --------- | -----------
 program | body | UUID du programme
 alert | body | Texte du message
 
-*Cas 3 : pour des clients*
+***Cas 3 : pour des clients***
 
 Parameter | Type | Description
 --------- | --------- | -----------

@@ -31,7 +31,7 @@ Type : [Provider] (#provider)
 `POST /api/shops/init`
 
 ### Query Parameters
-*Shop*
+***Shop***
 
 Parameter | Type | Description
 --------- | ----------- | -----------
