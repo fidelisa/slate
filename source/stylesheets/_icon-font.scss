@@ -10,8 +10,20 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Lato';
+  src:font-url('Lato-Regular.eot?-syv14m');
+  src:font-url('Lato-Regular.eot?#iefix-syv14m') format('embedded-opentype'),
+    font-url('Lato-Regular.woff2?-syv14m') format('woff2'),
+    font-url('Lato-Regular.woff?-syv14m') format('woff'),
+    font-url('Lato-Regular.ttf?-syv14m') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 %icon {
-  font-family: 'slate';
+  font-family: 'Lato, slate';
   speak: none;
   font-style: normal;
   font-weight: normal;

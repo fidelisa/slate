@@ -20,7 +20,7 @@
 }
 ```
 
-Permet de récupérer les règles liées aux programmes d'un point de vente
+Permet de récupérer les règles liées aux programmes d'un lieu
 
 ### Authentification
 

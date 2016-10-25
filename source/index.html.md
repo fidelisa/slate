@@ -28,6 +28,9 @@ includes:
 - targets
 - gifts
 - specialgains
+## Comming soon
+- happenings_categories
+- happenings
 
 # errors
 - errors

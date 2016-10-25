@@ -20,7 +20,7 @@
 }
 ```
 
-Permet d’initialiser la relation entre le point de vente et Fidelisa
+Permet d’initialiser la relation entre le lieu et Fidelisa
 
 ### Authentification
 
@@ -35,7 +35,7 @@ Type : [Provider] (#provider)
 
 Parameter | Type | Description
 --------- | ----------- | -----------
-user_email | body | Email du point de vente  
+user_email | body | Email du lieu  
 
 ### Return code
 Code | Description
@@ -55,7 +55,7 @@ Code | Description
 }
 ```
 
-Permet de visualiser un point de vente
+Permet de visualiser un lieu
 
 ### Authentification
 
@@ -69,7 +69,7 @@ Type : [Provider] (#provider)
 
 Parameter | Type | Description
 --------- | --------- | -----------
-ShopId | path | UUID du point de vente
+ShopId | path | UUID du lieu
 
 
 ### Return code
@@ -142,7 +142,7 @@ Code | Description
 }
 ```
 
-Permet de récupérer un tableau des catégories paramétrées par le point de vente
+Permet de récupérer un tableau des catégories paramétrées par le lieu
 
 ### Authentification
 

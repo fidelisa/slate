@@ -75,7 +75,7 @@
 }
 ```
 
-Permet de créer un client pour le point de vente
+Permet de créer un client pour le lieu
 
 ### Authentification
 
@@ -167,7 +167,7 @@ Code | Description
 }
 ```
 
-Permet de voir un client pour le point de vente
+Permet de voir un client pour le lieu
 
 ### Authentification
 
@@ -191,7 +191,7 @@ Code | Description
 
 
 ## Suppression
-Permet de supprimer un client pour le point de vente
+Permet de supprimer un client pour le lieu
 
 ### Authentification
 
@@ -238,7 +238,7 @@ Code | Description
 }
 ```
 
-Permet de récupérer la liste des clients d’un point de vente
+Permet de récupérer la liste des clients d’un lieu
 
 ### Authentification
 
