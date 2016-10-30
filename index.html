@@ -3607,6 +3607,21 @@ La propriété &ldquo;points&rdquo;, du retour correspond au nombre de points co
 <td>query</td>
 <td>ordre de tri (ex: created_at)</td>
 </tr>
+<tr>
+<td>happenings_category</td>
+<td>query</td>
+<td>UUID de la catégorie</td>
+</tr>
+<tr>
+<td>started_at</td>
+<td>query</td>
+<td>Filtrer les événements quie commencent après une date</td>
+</tr>
+<tr>
+<td>started</td>
+<td>query</td>
+<td>Tous les événements en cours</td>
+</tr>
 </tbody></table>
 
 <h3 id="return-code">Return code</h3>
@@ -3629,14 +3644,19 @@ La propriété &ldquo;points&rdquo;, du retour correspond au nombre de points co
 <p>Resultat JSON</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0D15F6D525294DED8DCFF3BC6F313ECB"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"719D4DFD14DE412488A01F9747346D6D"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"vendor_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sport"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"image_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000009AC12464C9183091F34E003BF85"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-10-23 14:29:03"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-10-23 15:15:00"</span><span class="w">
+    </span><span class="nt">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2457B2F6FDAA4625994E5A5A46C71D0D"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"719D4DFD14DE412488A01F9747346D6D"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"vendor_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fête du sport"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fête du sport description"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"image_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"happenings_category_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A1B878BB9D7E416F87BAB889A755FFCC"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"started_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-20 00:00:00"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"quota"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"reminder_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-10-25 07:00:22"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-10-25 07:00:22"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -3708,7 +3728,8 @@ La propriété &ldquo;points&rdquo;, du retour correspond au nombre de points co
     </span><span class="nt">"quota"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
     </span><span class="nt">"reminder_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
     </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-10-25 07:00:22"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-10-25 07:00:22"</span><span class="w">
+    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-10-25 07:00:22"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
