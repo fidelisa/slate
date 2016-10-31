@@ -36,6 +36,9 @@ Parameter | Type | Description
 vendor_id | query | UUID du lieu
 search | query | Filtre les événements contenant le mot dans le titre
 order | query | ordre de tri (ex: created_at)
+happenings_category | query | UUID de la catégorie
+started_at | query | Filtrer les événements quie commencent après une date
+started | query | Tous les événements en cours
 
 ### Return code
 Code | Description
@@ -48,14 +51,20 @@ Code | Description
 
 ```json
 {
-  "uuid": "0D15F6D525294DED8DCFF3BC6F313ECB",
-  "account_id": "719D4DFD14DE412488A01F9747346D6D",
-  "vendor_id": null,
-  "title": "Sport",
-  "image_id": "000009AC12464C9183091F34E003BF85",
-  "type": null,
-  "created_at": "2016-10-23 14:29:03",
-  "updated_at": "2016-10-23 15:15:00"
+    "uuid": "2457B2F6FDAA4625994E5A5A46C71D0D",
+    "account_id": "719D4DFD14DE412488A01F9747346D6D",
+    "vendor_id": null,
+    "title": "Fête du sport",
+    "description": "Fête du sport description",
+    "image_id": null,
+    "happenings_category_id": "A1B878BB9D7E416F87BAB889A755FFCC",
+    "started_at": "2017-01-20 00:00:00",
+    "quota": 200,
+    "reminder_time": 2,
+    "created_at": "2016-10-25 07:00:22",
+    "updated_at": "2016-10-25 07:00:22",
+    "duration": 120,
+    "available_seats": 80
 }
 ```
 
@@ -110,7 +119,9 @@ Code | Description
     "quota": 200,
     "reminder_time": 2,
     "created_at": "2016-10-25 07:00:22",
-    "updated_at": "2016-10-25 07:00:22"
+    "updated_at": "2016-10-25 07:00:22",
+    "duration": 120,
+    "available_seats": 80
 }
 ```
 
