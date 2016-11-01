@@ -3336,7 +3336,7 @@ La propriété &ldquo;points&rdquo;, du retour correspond au nombre de points co
 
 <h2 id="cr-er">Créer</h2>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"category"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"happenings_category"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Danse"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"vendor_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"512E811DB8CF4AAC943CACFD84118099"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"image_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000009AC12464C9183091F34E003BF85"</span><span class="w">
@@ -3413,7 +3413,7 @@ La propriété &ldquo;points&rdquo;, du retour correspond au nombre de points co
 
 <h2 id="mettre-jour">Mettre à jour</h2>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"category"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"happenings_category"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Equitation"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"vendor_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"512E811DB8CF4AAC943CACFD84118099"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"image_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000009AC12464C9183091F34E003BF85"</span><span class="w">
@@ -3629,9 +3629,9 @@ La propriété &ldquo;points&rdquo;, du retour correspond au nombre de points co
 <td>Tous les événements en cours</td>
 </tr>
 <tr>
-<td>with_customers</td>
-<td> query</td>
-<td>Permet de récupérer les clients participant</td>
+<td>customer_id</td>
+<td>query</td>
+<td>Les événements auxquels participe le client</td>
 </tr>
 </tbody></table>
 
@@ -3695,6 +3695,11 @@ La propriété &ldquo;points&rdquo;, du retour correspond au nombre de points co
 <td>happeningId</td>
 <td>path</td>
 <td>UUID de l&#39;événement</td>
+</tr>
+<tr>
+<td>with_customers</td>
+<td> path</td>
+<td>Permet de récupérer les clients participant</td>
 </tr>
 </tbody></table>
 
