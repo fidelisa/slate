@@ -85,7 +85,7 @@ Code | Description
 
 ```json
 {
-    "category": {
+    "happenings_category": {
         "title": "Danse",
         "vendor_id": "512E811DB8CF4AAC943CACFD84118099",
         "image_id": "000009AC12464C9183091F34E003BF85"
@@ -135,7 +135,7 @@ Code | Description
 
 ```json
 {
-    "category": {
+    "happenings_category": {
         "title": "Equitation",
         "vendor_id": "512E811DB8CF4AAC943CACFD84118099",
         "image_id": "000009AC12464C9183091F34E003BF85"
