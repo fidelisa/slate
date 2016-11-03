@@ -4000,6 +4000,754 @@ La propriété &ldquo;points&rdquo;, du retour correspond au nombre de points co
 </tr>
 </tbody></table>
 
+          <h1 id="forums-categories">Forums categories</h1>
+
+<p><strong><em>(Coming soon)</em></strong></p>
+
+<h2 id="liste">Liste</h2>
+
+<blockquote>
+<p>Resultat JSON</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6015DB3B0057472B8CB6DF207C4FDDE8"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"69518EF8A3814B1B9A7CBD455585D866"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"vendor_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tennis"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-03 09:10:07"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-03 09:10:07"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"forums"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"last"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-03 15:20:03"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C60EB9C9E485429AB6DE228B8E8F31BC"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"69518EF8A3814B1B9A7CBD455585D866"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"vendor_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Running"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-03 13:12:25"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-03 13:12:25"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"forums"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"last"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-03 15:56:30"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<p>Permet de voir la liste des catégories de forums</p>
+
+<h3 id="authentification">Authentification</h3>
+
+<p>Type : <a href="#shop">Shop</a></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET /api/forums_categories</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>vendor_id</td>
+<td>query</td>
+<td>UUID du lieu</td>
+</tr>
+<tr>
+<td>search</td>
+<td>query</td>
+<td>Filtre les catégories contenant le mot dans le titre</td>
+</tr>
+<tr>
+<td>order</td>
+<td>query</td>
+<td>ordre de tri (ex: created_at)</td>
+</tr>
+</tbody></table>
+
+<h3 id="return-code">Return code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+</tbody></table>
+
+<h2 id="visualisation">Visualisation</h2>
+
+<blockquote>
+<p>Resultat JSON</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1EC207C1F80F4DCD8796E9ED720E3635"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"69518EF8A3814B1B9A7CBD455585D866"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"vendor_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Natation"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-03 16:41:04"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-03 16:41:04"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"forums"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"last"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Permet de voir une catégorie de forum</p>
+
+<h3 id="authentification">Authentification</h3>
+
+<p>Type : <a href="#shop">Shop</a></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET /api/forums_categories/{categoryId}</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>categoryId</td>
+<td>path</td>
+<td>UUID de la catégorie</td>
+</tr>
+</tbody></table>
+
+<h3 id="return-code">Return code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>ok</td>
+</tr>
+</tbody></table>
+
+<h2 id="cr-er">Créer</h2>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"forums_category"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Danse"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"vendor_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"512E811DB8CF4AAC943CACFD84118099"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Resultat JSON</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E27CCB7D9D0C48728F27966A04170DC0"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"69518EF8A3814B1B9A7CBD455585D866"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"vendor_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"512E811DB8CF4AAC943CACFD84118099"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Danse"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-03 16:43:41"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-03 16:43:41"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"forums"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"last"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Permet de créer une catégorie</p>
+
+<h3 id="authentification">Authentification</h3>
+
+<p>Type : <a href="#shop">Shop</a></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST /api/forums_categories</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<p><strong><em>Category</em></strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>title</td>
+<td>body</td>
+<td>Nom de la catégorie</td>
+</tr>
+<tr>
+<td>vendor_id</td>
+<td>body</td>
+<td>UUID du lieu (facultatif)</td>
+</tr>
+</tbody></table>
+
+<h3 id="return-code">Return code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>201</td>
+<td>created</td>
+</tr>
+</tbody></table>
+
+<h2 id="mettre-jour">Mettre à jour</h2>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"forums_category"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Equitation"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"vendor_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"512E811DB8CF4AAC943CACFD84118099"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Resultat JSON</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E27CCB7D9D0C48728F27966A04170DC0"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"69518EF8A3814B1B9A7CBD455585D866"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"vendor_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"512E811DB8CF4AAC943CACFD84118099"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Equitation"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-03 16:43:41"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-03 16:43:41"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"forums"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"last"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Permet de mettre à jour une catégorie de forum</p>
+
+<h3 id="authentification">Authentification</h3>
+
+<p>Type : <a href="#shop">Shop</a></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PUT /api/forums_categories/{categoryId}</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>categoryId</td>
+<td>path</td>
+<td>UUID de la catégorie</td>
+</tr>
+</tbody></table>
+
+<p><strong><em>Category</em></strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>title</td>
+<td>body</td>
+<td>Nom de la catégorie</td>
+</tr>
+<tr>
+<td>vendor_id</td>
+<td>body</td>
+<td>UUID du lieu (facultatif)</td>
+</tr>
+</tbody></table>
+
+<h3 id="return-code">Return code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>ok</td>
+</tr>
+</tbody></table>
+
+<h2 id="suppression">Suppression</h2>
+
+<blockquote>
+<p>Resultat JSON</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{}</span><span class="w">
+</span></code></pre>
+
+<p>Permet de supprimer une catégorie de forum</p>
+
+<h3 id="authentification">Authentification</h3>
+
+<p>Type : <a href="#shop">Shop</a></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">DELETE /api/forums_categories/{categoryId}</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>categoryId</td>
+<td>path</td>
+<td>UUID de la catégorie</td>
+</tr>
+</tbody></table>
+
+<h3 id="return-code">Return code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>ok</td>
+</tr>
+</tbody></table>
+
+          <h1 id="forums">Forums</h1>
+
+<p><strong><em>(Coming soon)</em></strong></p>
+
+<h2 id="liste">Liste</h2>
+
+<blockquote>
+<p>Resultat JSON</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"B3CCBF0E28004ECDA60AE54F7B0FB0C3"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"69518EF8A3814B1B9A7CBD455585D866"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"vendor_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"forums_category_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6015DB3B0057472B8CB6DF207C4FDDE8"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"forum_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9018090F497F42EB8396C820034F11AF"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test rest"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-03 10:12:36"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-03 10:12:36"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"last_answer_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-03 10:12:36"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3A4101B2AB0B4C8BABCCA947FFC49ACD"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"69518EF8A3814B1B9A7CBD455585D866"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"vendor_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"forums_category_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6015DB3B0057472B8CB6DF207C4FDDE8"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"forum_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9018090F497F42EB8396C820034F11AF"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TEST2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-03 10:15:25"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-03 10:15:25"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"last_answer_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-03 10:15:25"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<p>Permet de voir la liste des forums</p>
+
+<h3 id="authentification">Authentification</h3>
+
+<p>Type : <a href="#shop">Shop</a></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET /api/forums</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>vendor_id</td>
+<td>query</td>
+<td>UUID du lieu</td>
+</tr>
+<tr>
+<td>search</td>
+<td>query</td>
+<td>Filtre les forums contenant le mot dans le titre</td>
+</tr>
+<tr>
+<td>order</td>
+<td>query</td>
+<td>ordre de tri (ex: created_at)</td>
+</tr>
+<tr>
+<td>forums_category</td>
+<td>query</td>
+<td>UUID de la catégorie</td>
+</tr>
+</tbody></table>
+
+<h3 id="return-code">Return code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+</tbody></table>
+
+<h2 id="visualisation">Visualisation</h2>
+
+<blockquote>
+<p>Resultat JSON</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3A4101B2AB0B4C8BABCCA947FFC49ACD"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"69518EF8A3814B1B9A7CBD455585D866"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"vendor_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"forums_category_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6015DB3B0057472B8CB6DF207C4FDDE8"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"forum_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9018090F497F42EB8396C820034F11AF"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test2"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TEST2"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-03 10:15:25"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-03 10:15:25"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"last_answer_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-03 10:15:25"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Permet de voir un forum</p>
+
+<h3 id="authentification">Authentification</h3>
+
+<p>Type : <a href="#shop">Shop</a></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET /api/forums/{forumId}</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>forumId</td>
+<td>path</td>
+<td>UUID de du forum</td>
+</tr>
+</tbody></table>
+
+<h3 id="return-code">Return code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>ok</td>
+</tr>
+</tbody></table>
+
+<h2 id="cr-er">Créer</h2>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"forum"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Premier Message"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mon Premier message"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"forums_category_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E27CCB7D9D0C48728F27966A04170DC0"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9018090F497F42EB8396C820034F11AF"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+    </span><span class="nt">"forum"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Une réponse à mon Premier message"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"forums_category_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E27CCB7D9D0C48728F27966A04170DC0"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9018090F497F42EB8396C820034F11AF"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"forum_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"C54C675B947243099A0D8CE09A4512E8"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Resultat JSON</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C54C675B947243099A0D8CE09A4512E8"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"69518EF8A3814B1B9A7CBD455585D866"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"vendor_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"forums_category_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E27CCB7D9D0C48728F27966A04170DC0"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"forum_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9018090F497F42EB8396C820034F11AF"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Premier Message"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mon Premier message"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-03 16:49:49"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-03 16:49:49"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"last_answer_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-03 16:49:49"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Permet de créer un forum</p>
+
+<h3 id="authentification">Authentification</h3>
+
+<p>Type : <a href="#shop">Shop</a></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST /api/forums</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<p><strong><em>Forum</em></strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>title</td>
+<td>body</td>
+<td>Nom de du forum</td>
+</tr>
+<tr>
+<td>forums_category_id</td>
+<td>body</td>
+<td>Catégorie d&#39;forum de référence</td>
+</tr>
+<tr>
+<td>message</td>
+<td>body</td>
+<td>Description de du forum</td>
+</tr>
+<tr>
+<td>customer_id</td>
+<td>body</td>
+<td>UUID du client</td>
+</tr>
+</tbody></table>
+
+<h3 id="return-code">Return code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>201</td>
+<td>created</td>
+</tr>
+</tbody></table>
+
+<h2 id="mettre-jour">Mettre à jour</h2>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"forum"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Premier Message (corrigé)"</span><span class="p">,</span><span class="w">
+    </span><span class="err">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Resultat JSON</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C54C675B947243099A0D8CE09A4512E8"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"69518EF8A3814B1B9A7CBD455585D866"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"vendor_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"forums_category_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E27CCB7D9D0C48728F27966A04170DC0"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"forum_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9018090F497F42EB8396C820034F11AF"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Premier Message (corrigé)"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mon Premier message"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-03 16:49:49"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-03 16:49:49"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"last_answer_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-03 16:49:49"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Permet de mettre à jour un forum</p>
+
+<h3 id="authentification">Authentification</h3>
+
+<p>Type : <a href="#shop">Shop</a></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PUT /api/forums/{forumId}</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>forumId</td>
+<td>path</td>
+<td>UUID de l&#39;événément</td>
+</tr>
+</tbody></table>
+
+<p><strong><em>Forum</em></strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>title</td>
+<td>body</td>
+<td>Nom de du forum</td>
+</tr>
+<tr>
+<td>forums_category_id</td>
+<td>body</td>
+<td>Catégorie d&#39;forum de référence</td>
+</tr>
+<tr>
+<td>message</td>
+<td>body</td>
+<td>Description de du forum</td>
+</tr>
+<tr>
+<td>customer_id</td>
+<td>body</td>
+<td>UUID du client</td>
+</tr>
+</tbody></table>
+
+<h3 id="return-code">Return code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>ok</td>
+</tr>
+</tbody></table>
+
+<h2 id="suppression">Suppression</h2>
+
+<blockquote>
+<p>Resultat JSON</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{}</span><span class="w">
+</span></code></pre>
+
+<p>Permet de supprimer un forum</p>
+
+<h3 id="authentification">Authentification</h3>
+
+<p>Type : <a href="#shop">Shop</a></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">DELETE /api/forums/{forumId}</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>forumId</td>
+<td>path</td>
+<td>UUID de l&#39;événément</td>
+</tr>
+</tbody></table>
+
+<h3 id="return-code">Return code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>ok</td>
+</tr>
+</tbody></table>
+
           <h1 id="errors">Errors</h1>
 
 <p>L&#39;API Fidelisa utilise les codes d&#39;erreurs suivants:</p>
