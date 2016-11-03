@@ -32,6 +32,9 @@ includes:
 - happenings_categories
 - happenings
 
+- forums_categories
+- forums
+
 # errors
 - errors
 
