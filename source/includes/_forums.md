@@ -53,6 +53,9 @@ vendor_id | query | UUID du lieu
 search | query | Filtre les forums contenant le mot dans le titre
 order | query | ordre de tri (ex: created_at)
 forums_category | query | UUID de la catégorie
+first_post | query | Seulement les forums de premier niveau
+forum | query | Un forum en particulier avec ses réponses
+
 
 ### Return code
 Code | Description
@@ -116,7 +119,6 @@ Code | Description
 {
     "forum": {
         "message": "Une réponse à mon Premier message",
-        "forums_category_id": "E27CCB7D9D0C48728F27966A04170DC0",
         "customer_id": "9018090F497F42EB8396C820034F11AF",
         "forum_id" : "C54C675B947243099A0D8CE09A4512E8"
     }
