@@ -3222,7 +3222,8 @@ La propriété &ldquo;points&rdquo;, du retour correspond au nombre de points co
         </span><span class="nt">"image_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000009AC12464C9183091F34E003BF85"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-10-23 14:29:03"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-10-23 15:15:00"</span><span class="w">
+        </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-10-23 15:15:00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"sort_order"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
@@ -3290,7 +3291,8 @@ La propriété &ldquo;points&rdquo;, du retour correspond au nombre de points co
     </span><span class="nt">"image_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000009AC12464C9183091F34E003BF85"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-10-23 14:29:03"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-10-23 15:15:00"</span><span class="w">
+    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-10-23 15:15:00"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"sort_order"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -3339,7 +3341,8 @@ La propriété &ldquo;points&rdquo;, du retour correspond au nombre de points co
     </span><span class="nt">"happenings_category"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Danse"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"vendor_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"512E811DB8CF4AAC943CACFD84118099"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"image_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000009AC12464C9183091F34E003BF85"</span><span class="w">
+        </span><span class="nt">"image_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000009AC12464C9183091F34E003BF85"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"sort_order"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -3355,7 +3358,8 @@ La propriété &ldquo;points&rdquo;, du retour correspond au nombre de points co
     </span><span class="nt">"image_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000009AC12464C9183091F34E003BF85"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-10-23 14:29:03"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-10-23 15:15:00"</span><span class="w">
+    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-10-23 15:15:00"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"sort_order"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -3395,6 +3399,11 @@ La propriété &ldquo;points&rdquo;, du retour correspond au nombre de points co
 <td>body</td>
 <td>UUID de l&#39;image (facultatif)</td>
 </tr>
+<tr>
+<td>sort_order</td>
+<td>body</td>
+<td>Permet de trier les catégories (facultatif)</td>
+</tr>
 </tbody></table>
 
 <h3 id="return-code">Return code</h3>
@@ -3416,7 +3425,8 @@ La propriété &ldquo;points&rdquo;, du retour correspond au nombre de points co
     </span><span class="nt">"happenings_category"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Equitation"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"vendor_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"512E811DB8CF4AAC943CACFD84118099"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"image_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000009AC12464C9183091F34E003BF85"</span><span class="w">
+        </span><span class="nt">"image_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000009AC12464C9183091F34E003BF85"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"sort_order"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -3432,7 +3442,8 @@ La propriété &ldquo;points&rdquo;, du retour correspond au nombre de points co
     </span><span class="nt">"image_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000009AC12464C9183091F34E003BF85"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-10-23 14:29:03"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-10-23 15:15:00"</span><span class="w">
+    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-10-23 15:15:00"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"sort_order"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -3485,6 +3496,11 @@ La propriété &ldquo;points&rdquo;, du retour correspond au nombre de points co
 <td>image_id</td>
 <td>body</td>
 <td>UUID de l&#39;image (facultatif)</td>
+</tr>
+<tr>
+<td>sort_order</td>
+<td>body</td>
+<td>Permet de trier les catégories (facultatif)</td>
 </tr>
 </tbody></table>
 
@@ -4017,7 +4033,8 @@ La propriété &ldquo;points&rdquo;, du retour correspond au nombre de points co
     </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tennis"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-03 09:10:07"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-03 09:10:07"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"forums"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"sort_order"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="s2">"forums"</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
       </span><span class="nt">"last"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-03 15:20:03"</span><span class="w">
     </span><span class="p">}</span><span class="w">
@@ -4029,7 +4046,8 @@ La propriété &ldquo;points&rdquo;, du retour correspond au nombre de points co
     </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Running"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-03 13:12:25"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-03 13:12:25"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"forums"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"sort_order"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+    </span><span class="s2">"forums"</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
       </span><span class="nt">"last"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-03 15:56:30"</span><span class="w">
     </span><span class="p">}</span><span class="w">
@@ -4099,7 +4117,8 @@ La propriété &ldquo;points&rdquo;, du retour correspond au nombre de points co
     </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Natation"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-03 16:41:04"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-03 16:41:04"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"forums"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"sort_order"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="s2">"forums"</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
         </span><span class="nt">"last"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">}</span><span class="w">
@@ -4150,7 +4169,8 @@ La propriété &ldquo;points&rdquo;, du retour correspond au nombre de points co
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"forums_category"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Danse"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"vendor_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"512E811DB8CF4AAC943CACFD84118099"</span><span class="w">
+        </span><span class="nt">"vendor_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"512E811DB8CF4AAC943CACFD84118099"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"sort_order"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -4203,6 +4223,11 @@ La propriété &ldquo;points&rdquo;, du retour correspond au nombre de points co
 <td>body</td>
 <td>UUID du lieu (facultatif)</td>
 </tr>
+<tr>
+<td>sort_order</td>
+<td>body</td>
+<td>Permet de trier les catégories (facultatif)</td>
+</tr>
 </tbody></table>
 
 <h3 id="return-code">Return code</h3>
@@ -4223,7 +4248,8 @@ La propriété &ldquo;points&rdquo;, du retour correspond au nombre de points co
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"forums_category"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Equitation"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"vendor_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"512E811DB8CF4AAC943CACFD84118099"</span><span class="w">
+        </span><span class="nt">"vendor_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"512E811DB8CF4AAC943CACFD84118099"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"sort_order"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -4238,7 +4264,8 @@ La propriété &ldquo;points&rdquo;, du retour correspond au nombre de points co
     </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Equitation"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-03 16:43:41"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-03 16:43:41"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"forums"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"sort_order"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="s2">"forums"</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
         </span><span class="nt">"last"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">}</span><span class="w">
@@ -4289,6 +4316,11 @@ La propriété &ldquo;points&rdquo;, du retour correspond au nombre de points co
 <td>vendor_id</td>
 <td>body</td>
 <td>UUID du lieu (facultatif)</td>
+</tr>
+<tr>
+<td>sort_order</td>
+<td>body</td>
+<td>Permet de trier les catégories (facultatif)</td>
 </tr>
 </tbody></table>
 
