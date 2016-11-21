@@ -14,7 +14,8 @@
         "image_id": "000009AC12464C9183091F34E003BF85",
         "type": null,
         "created_at": "2016-10-23 14:29:03",
-        "updated_at": "2016-10-23 15:15:00"
+        "updated_at": "2016-10-23 15:15:00",
+        "sort_order": 1
     }
 ]
 ```
@@ -55,7 +56,8 @@ Code | Description
     "image_id": "000009AC12464C9183091F34E003BF85",
     "type": null,
     "created_at": "2016-10-23 14:29:03",
-    "updated_at": "2016-10-23 15:15:00"
+    "updated_at": "2016-10-23 15:15:00",
+    "sort_order": 1
 }
 ```
 
@@ -88,7 +90,8 @@ Code | Description
     "happenings_category": {
         "title": "Danse",
         "vendor_id": "512E811DB8CF4AAC943CACFD84118099",
-        "image_id": "000009AC12464C9183091F34E003BF85"
+        "image_id": "000009AC12464C9183091F34E003BF85",
+        "sort_order": 1
     }
 }
 ```
@@ -103,7 +106,8 @@ Code | Description
     "image_id": "000009AC12464C9183091F34E003BF85",
     "type": null,
     "created_at": "2016-10-23 14:29:03",
-    "updated_at": "2016-10-23 15:15:00"
+    "updated_at": "2016-10-23 15:15:00",
+    "sort_order": 1
 }
 ```
 
@@ -125,6 +129,7 @@ Parameter | Type | Description
 title | body | Nom de la catégorie
 vendor_id | body | UUID du lieu (facultatif)
 image_id | body | UUID de l'image (facultatif)
+sort_order | body | Permet de trier les catégories (facultatif)
 
 ### Return code
 Code | Description
@@ -138,7 +143,8 @@ Code | Description
     "happenings_category": {
         "title": "Equitation",
         "vendor_id": "512E811DB8CF4AAC943CACFD84118099",
-        "image_id": "000009AC12464C9183091F34E003BF85"
+        "image_id": "000009AC12464C9183091F34E003BF85",
+        "sort_order": 1
     }
 }
 ```
@@ -153,7 +159,8 @@ Code | Description
     "image_id": "000009AC12464C9183091F34E003BF85",
     "type": null,
     "created_at": "2016-10-23 14:29:03",
-    "updated_at": "2016-10-23 15:15:00"
+    "updated_at": "2016-10-23 15:15:00",
+    "sort_order": 1
 }
 ```
 
@@ -179,6 +186,7 @@ Parameter | Type | Description
 title | body | Nom de la catégorie
 vendor_id | body | UUID du lieu (facultatif)
 image_id | body | UUID de l'image (facultatif)
+sort_order | body | Permet de trier les catégories (facultatif)
 
 
 

@@ -13,6 +13,7 @@
     "title": "Tennis",
     "created_at": "2016-11-03 09:10:07",
     "updated_at": "2016-11-03 09:10:07",
+    "sort_order": 1
     "forums": {
       "count": 5,
       "last": "2016-11-03 15:20:03"
@@ -25,6 +26,7 @@
     "title": "Running",
     "created_at": "2016-11-03 13:12:25",
     "updated_at": "2016-11-03 13:12:25",
+    "sort_order": 2
     "forums": {
       "count": 2,
       "last": "2016-11-03 15:56:30"
@@ -68,6 +70,7 @@ Code | Description
     "title": "Natation",
     "created_at": "2016-11-03 16:41:04",
     "updated_at": "2016-11-03 16:41:04",
+    "sort_order": 1
     "forums": {
         "count": 0,
         "last": null
@@ -103,7 +106,8 @@ Code | Description
 {
     "forums_category": {
         "title": "Danse",
-        "vendor_id": "512E811DB8CF4AAC943CACFD84118099"
+        "vendor_id": "512E811DB8CF4AAC943CACFD84118099",
+        "sort_order": 1
     }
 }
 ```
@@ -141,6 +145,7 @@ Parameter | Type | Description
 --------- | --------- | -----------
 title | body | Nom de la catégorie
 vendor_id | body | UUID du lieu (facultatif)
+sort_order | body | Permet de trier les catégories (facultatif)
 
 ### Return code
 Code | Description
@@ -153,7 +158,8 @@ Code | Description
 {
     "forums_category": {
         "title": "Equitation",
-        "vendor_id": "512E811DB8CF4AAC943CACFD84118099"
+        "vendor_id": "512E811DB8CF4AAC943CACFD84118099",
+        "sort_order": 1
     }
 }
 ```
@@ -167,6 +173,7 @@ Code | Description
     "title": "Equitation",
     "created_at": "2016-11-03 16:43:41",
     "updated_at": "2016-11-03 16:43:41",
+    "sort_order": 1
     "forums": {
         "count": 0,
         "last": null
@@ -195,8 +202,7 @@ Parameter | Type | Description
 --------- | --------- | -----------
 title | body | Nom de la catégorie
 vendor_id | body | UUID du lieu (facultatif)
-
-
+sort_order | body | Permet de trier les catégories (facultatif)
 
 ### Return code
 Code | Description
